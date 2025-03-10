@@ -1,5 +1,7 @@
-export default function usePlaceholder() {
+const usePlaceholder = () => {
   return {
     placeholder: 'placeholder'
   };
-}
+};
+
+export default usePlaceholder;
