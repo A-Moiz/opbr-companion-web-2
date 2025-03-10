@@ -1,15 +1,21 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '@/public/logo.png';
+import logo from '../../public/images/logo.png';
 
 const Header = () => {
   return (
-    <header className="navbar">
-      <Image src={logo} alt="OPBR App Logo" className="logo-image" />
+    <header>
+      <Image src={logo} alt="OPBR App Logo" />
       <nav>
-        <ul className="nav-links">
+        <ul>
           <li>
             <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/characters">Characters</Link>
+          </li>
+          <li>
+            <Link href="/medal-sets">Medal Sets</Link>
           </li>
         </ul>
       </nav>
