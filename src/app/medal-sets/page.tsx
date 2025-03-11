@@ -1,5 +1,11 @@
+import MedalSetCard from '@/components/MedalSetCard';
+
 const MedalSets = () => {
-  return <div>MedalSets</div>;
+  return (
+    <div>
+      <MedalSetCard />
+    </div>
+  );
 };
 
 export default MedalSets;
