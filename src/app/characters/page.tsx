@@ -1,5 +1,8 @@
+import CharacterCards from "@/components/CharacterCard";
 const Characters = () => {
-  return <div>Characters</div>;
+  return <div>Characters
+    <CharacterCards />
+  </div>;
 };
 
 export default Characters;
