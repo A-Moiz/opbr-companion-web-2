@@ -99,7 +99,7 @@ const Header = () => {
           <Link href="/medal-sets" className="block hover:text-[#FF7F50] transition-colors">
             Medal Sets
           </Link>
-          <Link href="/support" className="block hover:text-[#FF7F50] transition-colors">
+          <Link href="/supports" className="block hover:text-[#FF7F50] transition-colors">
             Support
           </Link>
           <div
