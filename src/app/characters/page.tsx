@@ -1,8 +1,11 @@
-import CharacterCards from "@/components/CharacterCard";
+import CharacterCards from '@/components/CharacterCard';
 const Characters = () => {
-  return <div>Characters
-    <CharacterCards />
-  </div>;
+  return (
+    <div>
+      Characters
+      <CharacterCards />
+    </div>
+  );
 };
 
 export default Characters;
