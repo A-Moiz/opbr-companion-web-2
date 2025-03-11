@@ -47,7 +47,7 @@ const Header = () => {
             Medal Sets
           </Link>
           <Link
-            href="/support"
+            href="/supports"
             style={{ color: darkMode ? '#EAEAEA' : '#1B1B1B' }}
             className="hover:text-[#FF7F50] transition-colors"
           >
