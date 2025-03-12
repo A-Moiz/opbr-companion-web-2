@@ -1,6 +1,3 @@
-import Image from 'next/image';
-import Logo from '../../public/images/logo.png';
-
 interface MedalSetCardProps {
   medals: string[]; // Array of image URLs
   medalTraits: string[]; // Array of trait tags
