@@ -19,6 +19,7 @@ const MedalSets = () => {
       if (error) {
         console.error('Error fetching medal sets:', error.message);
       } else {
+        console.log('Fetched Medal Sets:', data);
         setMedalSets(data as MedalSet[]);
       }
     };
