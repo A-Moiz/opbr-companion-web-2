@@ -84,16 +84,6 @@ const Header = () => {
           <Link href="/supports" className="block hover:text-[#FF7F50] transition-colors">
             Support
           </Link>
-
-          {/* Dark Mode Toggle in Mobile Menu */}
-          <button
-            onClick={toggleDarkMode}
-            className="flex items-center space-x-2 mt-4"
-            style={{ color: darkMode ? '#EAEAEA' : '#1B1B1B' }}
-          >
-            {darkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
-            <span>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
-          </button>
         </div>
       )}
     </header>
