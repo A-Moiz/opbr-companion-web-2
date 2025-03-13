@@ -8,10 +8,10 @@ interface CharacterCardProps {
 export default function CharacterCards({ name, image }: CharacterCardProps) {
   return (
     <div
-      className={`w-64 h-60 p-4 rounded-xl shadow-md transition-colors flex flex-col items-center ${'bg-gray-200 text-black'}`}
+      className={`w-60 h-60 p-4 rounded-xl shadow-md transition-colors flex flex-col items-center ${'bg-gray-200 text-black'}`}
     >
       <figure className="flex justify-center pt-2">
-        <Image src={image} alt={name} className="rounded-2xl" width={120} height={120} />
+        <Image src={image} alt={name} className="rounded-2xl" width={175} height={175} />
       </figure>
       <div className="text-center mt-3">
         <h2 className="text-lg font-semibold">{name}</h2>
