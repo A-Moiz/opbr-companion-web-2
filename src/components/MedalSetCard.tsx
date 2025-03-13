@@ -23,7 +23,7 @@ const MedalSetCard: React.FC<MedalSetCardProps> = ({ medals, medalTraits }) => {
       </div>
       <div className="mt-2 text-sm text-gray-600">
         {medalTraits.map((trait, idx) => (
-          <span key={idx} className=" text-white px-2 py-1 text-xl rounded-md text-xs mr-2 inline-block">
+          <span key={idx} className=" text-white px-2 py-1 rounded-md text-xs mr-2 inline-block">
             {trait}
           </span>
         ))}
