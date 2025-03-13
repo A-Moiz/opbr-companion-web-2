@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { FaArrowRight } from 'react-icons/fa';
 
 interface MedalSetCardProps {
   medals: string[];
@@ -22,11 +23,19 @@ const MedalSetCard: React.FC<MedalSetCardProps> = ({ medals, medalTraits }) => {
       </div>
       <div className="mt-2 text-sm text-gray-600">
         {medalTraits.map((trait, idx) => (
-          <span key={idx} className="bg-gray-200 text-gray-800 px-2 py-1 rounded-md text-xs mr-2">
+          <span key={idx} className=" text-white px-2 py-1 text-xl rounded-md text-xs mr-2 inline-block">
             {trait}
           </span>
         ))}
       </div>
+
+      {/* Divider */}
+      <div className="border-t border-gray-300 my-2"></div>
+
+      {/* Button-like Link with pointer icon */}
+      <button className="w-full text-left text-blue-500 hover:underline py-1 flex items-center gap-1">
+        More Details <FaArrowRight className="text-sm" />
+      </button>
     </div>
   );
 };

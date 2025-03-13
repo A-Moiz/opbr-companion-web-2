@@ -1,7 +1,8 @@
 'use client';
-import MedalSetCard from '@/components/MedalSetCard';
 import { useEffect, useState } from 'react';
 import supabase from '../../database/supabaseClient';
+import Image from 'next/image';
+import { FaArrowRight, FaTimes } from 'react-icons/fa';
 
 interface MedalSet {
   id: string;
@@ -11,6 +12,7 @@ interface MedalSet {
 
 const MedalSets = () => {
   const [medalSets, setMedalSets] = useState<MedalSet[]>([]);
+  const [selectedMedalSet, setSelectedMedalSet] = useState<MedalSet | null>(null);
 
   useEffect(() => {
     const fetchMedalSets = async () => {
@@ -32,9 +34,80 @@ const MedalSets = () => {
       <h2 className="text-2xl font-bold mb-4">Medal Sets</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {medalSets.map((medalSet, index) => (
-          <MedalSetCard key={index} medals={medalSet.medals} medalTraits={medalSet.medal_traits} />
+          <div key={index} className="p-4 bg-base-100 rounded-lg shadow-md">
+            <div className="flex gap-2">
+              {medalSet.medals.slice(0, 3).map((img, idx) => (
+                <Image
+                  key={idx}
+                  src={img}
+                  alt={`Medal ${idx + 1}`}
+                  className="w-20 h-20 rounded-md"
+                  width={120}
+                  height={120}
+                />
+              ))}
+            </div>
+            <div className="mt-2 text-sm text-gray-600">
+              {medalSet.medal_traits.map((trait, idx) => (
+                <span key={idx} className="bg-gray-700 text-white px-2 py-1 rounded-md text-xs mr-2 inline-block">
+                  {trait}
+                </span>
+              ))}
+            </div>
+            <div className="border-t border-gray-300 my-2"></div>
+            <button
+              onClick={() => setSelectedMedalSet(medalSet)}
+              className="w-full text-left text-blue-500 hover:underline py-1 flex items-center gap-1"
+            >
+              More Details <FaArrowRight className="text-sm" />
+            </button>
+          </div>
         ))}
       </div>
+      {selectedMedalSet && (
+        <div
+          className="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center backdrop-blur-md"
+          onClick={() => setSelectedMedalSet(null)}
+        >
+          <div className="bg-base-100 w-3/4 p-6 rounded-lg shadow-lg relative" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+              onClick={() => setSelectedMedalSet(null)}
+            >
+              <FaTimes size={20} />
+            </button>
+            <h2 className="text-xl font-bold mb-4">Medal Set Details</h2>
+            <div className="flex gap-2 justify-center">
+              {selectedMedalSet.medals.slice(0, 3).map((img, idx) => (
+                <Image
+                  key={idx}
+                  src={img}
+                  alt={`Medal ${idx + 1}`}
+                  className="w-20 h-20 rounded-md"
+                  width={120}
+                  height={120}
+                />
+              ))}
+            </div>
+            <div className="mt-2 text-sm text-gray-600 text-center">
+              {selectedMedalSet.medal_traits.map((trait, idx) => (
+                <span key={idx} className=" text-white px-2 py-1 text-xl rounded-md text-xs mr-2 inline-block">
+                  {trait}
+                </span>
+              ))}
+            </div>
+            <div className="border-t border-gray-300 my-3"></div>
+            <p className="font-semibold">Best for:</p>
+            <p className="text-white mb-3">[Best usage details here]</p>
+            <div className="border-t border-gray-300 my-3"></div>
+            <p className="font-semibold">Description:</p>
+            <p className="text-white mb-3">[Description here]</p>
+            <div className="border-t border-gray-300 my-3"></div>
+            <p className="font-semibold">Tag:</p>
+            <p className="text-white">[Tag information]</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
