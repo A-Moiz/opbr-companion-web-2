@@ -49,7 +49,7 @@ const MedalSets = () => {
             </div>
             <div className="mt-2 text-sm text-gray-600">
               {medalSet.medal_traits.map((trait, idx) => (
-                <span key={idx} className="bg-gray-700 text-white px-2 py-1 rounded-md text-xs mr-2 inline-block">
+                <span key={idx} className=" text-white px-2 py-1 rounded-md text-xs mr-2 inline-block">
                   {trait}
                 </span>
               ))}
@@ -77,25 +77,31 @@ const MedalSets = () => {
               <FaTimes size={20} />
             </button>
             <h2 className="text-xl font-bold mb-4">Medal Set Details</h2>
-            <div className="flex gap-2 justify-center">
-              {selectedMedalSet.medals.slice(0, 3).map((img, idx) => (
-                <Image
-                  key={idx}
-                  src={img}
-                  alt={`Medal ${idx + 1}`}
-                  className="w-20 h-20 rounded-md"
-                  width={120}
-                  height={120}
-                />
-              ))}
+
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table className="w-full text-sm text-left text-white">
+                <tbody>
+                  {selectedMedalSet.medals.map((img, idx) => (
+                    <tr
+                      key={idx}
+                      className={`${idx % 2 === 0 ? 'bg-gray-700' : 'bg-transparent'} border-b border-gray-700`}
+                    >
+                      <td className="px-6 py-4 border-r border-gray-700">
+                        <Image
+                          src={img}
+                          alt={`Medal ${idx + 1}`}
+                          className="w-20 h-20 rounded-md"
+                          width={120}
+                          height={120}
+                        />
+                      </td>
+                      <td className="px-6 py-4 text-sm">{selectedMedalSet.medal_traits[idx] || '-'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            <div className="mt-2 text-sm text-gray-600 text-center">
-              {selectedMedalSet.medal_traits.map((trait, idx) => (
-                <span key={idx} className=" text-white px-2 py-1 text-xl rounded-md text-xs mr-2 inline-block">
-                  {trait}
-                </span>
-              ))}
-            </div>
+
             <div className="border-t border-gray-300 my-3"></div>
             <p className="font-semibold">Best for:</p>
             <p className="text-white mb-3">[Best usage details here]</p>
