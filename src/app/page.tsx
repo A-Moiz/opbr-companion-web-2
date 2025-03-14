@@ -40,7 +40,7 @@ const Home = () => {
           <div className={`absolute inset-0 ${darkMode ? 'bg-black opacity-70' : 'bg-white opacity-30'}`}></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 dark:from-transparent dark:to-gray-900"></div>
           <Image
-            src="https://pbs.twimg.com/media/Fgi_aZyaUAAXkoK.jpg"
+            src="https://scontent.fbrs5-1.fna.fbcdn.net/v/t39.30808-6/474932953_1085061293632211_3339171012958791434_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=S_5Dhk79kqQQ7kNvgHtnp1E&_nc_oc=AdjsS5GNtTZ2c-dJkJMRALYSFPJIjAk6oqoTN4qJUxTa7fCYVN2wFFtqmRas1vhy5SkTPSd0iDMd7adDg702YLaC&_nc_zt=23&_nc_ht=scontent.fbrs5-1.fna&_nc_gid=RxukT_yHMCUUGDAEppQomw&oh=00_AYH-FFt1cYwfAwo4WnGl96tk8592a3QJA_xK6XpXO8HzUg&oe=67D990CF"
             alt="OPBR Background"
             fill
             style={{ objectFit: 'cover' }}
@@ -111,7 +111,7 @@ const Home = () => {
             <div className={`rounded-lg shadow-lg overflow-hidden ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
               <div className="relative h-48">
                 <Image
-                  src="https://pbs.twimg.com/media/Fgi_aZyaUAAXkoK.jpg"
+                  src="https://scontent.fbrs5-1.fna.fbcdn.net/v/t39.30808-6/474932953_1085061293632211_3339171012958791434_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=S_5Dhk79kqQQ7kNvgHtnp1E&_nc_oc=AdjsS5GNtTZ2c-dJkJMRALYSFPJIjAk6oqoTN4qJUxTa7fCYVN2wFFtqmRas1vhy5SkTPSd0iDMd7adDg702YLaC&_nc_zt=23&_nc_ht=scontent.fbrs5-1.fna&_nc_gid=RxukT_yHMCUUGDAEppQomw&oh=00_AYH-FFt1cYwfAwo4WnGl96tk8592a3QJA_xK6XpXO8HzUg&oe=67D990CF"
                   alt="New Character Release"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -131,14 +131,14 @@ const Home = () => {
             <div className={`rounded-lg shadow-lg overflow-hidden ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
               <div className="relative h-48">
                 <Image
-                  src="https://pbs.twimg.com/media/Fgi_aZyaUAAXkoK.jpg"
+                  src="https://scontent.fbrs5-1.fna.fbcdn.net/v/t39.30808-6/474932953_1085061293632211_3339171012958791434_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=S_5Dhk79kqQQ7kNvgHtnp1E&_nc_oc=AdjsS5GNtTZ2c-dJkJMRALYSFPJIjAk6oqoTN4qJUxTa7fCYVN2wFFtqmRas1vhy5SkTPSd0iDMd7adDg702YLaC&_nc_zt=23&_nc_ht=scontent.fbrs5-1.fna&_nc_gid=RxukT_yHMCUUGDAEppQomw&oh=00_AYH-FFt1cYwfAwo4WnGl96tk8592a3QJA_xK6XpXO8HzUg&oe=67D990CF"
                   alt="Medal Set Strategy"
                   fill
                   style={{ objectFit: 'cover' }}
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Top Medal Sets for Season 8</h3>
+                <h3 className="text-xl font-bold mb-2">Top Medal Sets</h3>
                 <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   Discover the best medal combinations to dominate in the current meta.
                 </p>
