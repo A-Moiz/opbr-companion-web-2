@@ -1,14 +1,19 @@
+'use client';
 import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
+import useTheme from '../hooks/ThemeContext';
 
 interface MedalSetCardProps {
   medals: string[];
   medalTraits: string[];
+  onViewDetails: () => void;
 }
 
-const MedalSetCard: React.FC<MedalSetCardProps> = ({ medals, medalTraits }) => {
+const MedalSetCard: React.FC<MedalSetCardProps> = ({ medals, medalTraits, onViewDetails }) => {
+  const { darkMode } = useTheme();
+
   return (
-    <div className="p-4 bg-base-100 rounded-lg shadow-md">
+    <div className={`p-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-800' : 'bg-base-100'}`}>
       <div className="flex gap-2">
         {medals.map((img, idx) => (
           <Image
@@ -21,19 +26,25 @@ const MedalSetCard: React.FC<MedalSetCardProps> = ({ medals, medalTraits }) => {
           />
         ))}
       </div>
-      <div className="mt-2 text-sm text-gray-600">
+      <div className="mt-2 text-sm">
         {medalTraits.map((trait, idx) => (
-          <span key={idx} className=" text-white px-2 py-1 rounded-md text-xs mr-2 inline-block">
+          <span
+            key={idx}
+            className={`${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-800'} px-2 py-1 rounded-md text-xs mr-2 inline-block`}
+          >
             {trait}
           </span>
         ))}
       </div>
 
       {/* Divider */}
-      <div className="border-t border-gray-300 my-2"></div>
+      <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} my-2`}></div>
 
       {/* Button-like Link with pointer icon */}
-      <button className="w-full text-left text-blue-500 hover:underline py-1 flex items-center gap-1">
+      <button
+        onClick={onViewDetails}
+        className="w-full text-left text-blue-500 hover:underline py-1 flex items-center gap-1"
+      >
         More Details <FaArrowRight className="text-sm" />
       </button>
     </div>
