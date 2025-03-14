@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import supabase from '../../database/supabaseClient';
+import { supabase } from '../../database/supabaseClient';
 import Image from 'next/image';
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
 import useTheme from '../../hooks/ThemeContext';
@@ -30,7 +30,6 @@ const MedalSets = () => {
       if (error) {
         console.error('Error fetching medal sets:', error.message);
       } else {
-        console.log('Fetched Medal Sets:', JSON.stringify(data, null, 2));
         setMedalSets(data as MedalSet[]);
       }
     };
