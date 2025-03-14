@@ -10,7 +10,8 @@ interface MedalSetCardProps {
 }
 
 const MedalSetCard: React.FC<MedalSetCardProps> = ({ medals, medalTraits, onViewDetails }) => {
-  const { darkMode } = useTheme();
+  const theme = useTheme();
+  const darkMode = theme?.darkMode ?? false;
 
   return (
     <div className={`p-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-800' : 'bg-base-100'}`}>

@@ -1,3 +1,5 @@
+'use client';
+
 import useTheme from '@/hooks/ThemeContext';
 import Image from 'next/image';
 interface CharacterCardProps {
@@ -6,7 +8,8 @@ interface CharacterCardProps {
 }
 
 export default function CharacterCards({ name, image }: CharacterCardProps) {
-  const { darkMode } = useTheme();
+  const theme = useTheme();
+  const darkMode = theme?.darkMode ?? false;
 
   return (
     <div
