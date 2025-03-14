@@ -31,7 +31,7 @@ const MedalSets = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Medal Sets</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">Browse Medal Sets & Find the Best Fit for Your Characters</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {medalSets.map((medalSet, index) => (
           <div key={index} className="p-4 bg-base-100 rounded-lg shadow-md">
