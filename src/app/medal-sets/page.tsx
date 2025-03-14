@@ -6,8 +6,12 @@ import { FaArrowRight, FaTimes } from 'react-icons/fa';
 
 interface MedalSet {
   id: string;
+  name: string;
   medals: string[];
   medal_traits: string[];
+  best_for: string;
+  description: string;
+  tags: string[];
 }
 
 const MedalSets = () => {
@@ -16,12 +20,12 @@ const MedalSets = () => {
 
   useEffect(() => {
     const fetchMedalSets = async () => {
-      const { data, error } = await supabase.from('medal_set').select('medals, medal_traits');
+      const { data, error } = await supabase.from('medal_set').select('*');
 
       if (error) {
         console.error('Error fetching medal sets:', error.message);
       } else {
-        console.log('Fetched Medal Sets:', data);
+        console.log('Fetched Medal Sets:', JSON.stringify(data, null, 2));
         setMedalSets(data as MedalSet[]);
       }
     };
@@ -49,7 +53,7 @@ const MedalSets = () => {
             </div>
             <div className="mt-2 text-sm text-gray-600">
               {medalSet.medal_traits.map((trait, idx) => (
-                <span key={idx} className=" text-white px-2 py-1 rounded-md text-xs mr-2 inline-block">
+                <span key={idx} className=" text-white px-2 py-1 rounded-md mr-2 inline-block">
                   {trait}
                 </span>
               ))}
@@ -76,7 +80,7 @@ const MedalSets = () => {
             >
               <FaTimes size={20} />
             </button>
-            <h2 className="text-xl font-bold mb-4">Medal Set Details</h2>
+            <h2 className="text-xl font-bold mb-4">{selectedMedalSet.name}</h2>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               <table className="w-full text-sm text-left text-white">
@@ -104,13 +108,19 @@ const MedalSets = () => {
 
             <div className="border-t border-gray-300 my-3"></div>
             <p className="font-semibold">Best for:</p>
-            <p className="text-white mb-3">[Best usage details here]</p>
+            <p className="text-white mb-3">{selectedMedalSet.best_for || 'N/A'}</p>
             <div className="border-t border-gray-300 my-3"></div>
             <p className="font-semibold">Description:</p>
-            <p className="text-white mb-3">[Description here]</p>
+            <p className="text-white mb-3">{selectedMedalSet.description || 'No description available'}</p>
             <div className="border-t border-gray-300 my-3"></div>
-            <p className="font-semibold">Tag:</p>
-            <p className="text-white">[Tag information]</p>
+            <p className="font-semibold">Tags:</p>
+            <ul className="list-disc list-inside text-white mb-3">
+              {selectedMedalSet.tags && selectedMedalSet.tags.length > 0 ? (
+                selectedMedalSet.tags.map((tag, idx) => <li key={idx}>{tag}</li>)
+              ) : (
+                <li>No tags</li>
+              )}
+            </ul>
           </div>
         </div>
       )}
