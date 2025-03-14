@@ -1,9 +1,8 @@
 @import 'tailwindcss';
 @plugin "daisyui";
 
-
 body {
-  background-color: 		#FFF5EE;
+  background-color: #fff5ee;
   color: #1b1b1b;
   transition: all 0.3s ease-in-out;
   min-height: 100vh;
@@ -14,10 +13,22 @@ body {
   color: #eaeaea;
 }
 
+.light body {
+  background-color: #d4d4d4;
+  color: #1b1b1b;
+}
+
 /* Border effect for dark mode */
 .dark main {
   background-color: #181818;
   border: 2px solid #292929;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.light main {
+  background-color: #f5f5f5;
+  border: 2px solid #d4d4d4;
   padding: 20px;
   border-radius: 10px;
 }
