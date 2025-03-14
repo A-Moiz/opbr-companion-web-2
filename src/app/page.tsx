@@ -1,10 +1,13 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaUsers, FaMedal, FaHandHoldingHeart } from 'react-icons/fa';
 import useTheme from '../hooks/ThemeContext';
 
 const Home = () => {
-  const { darkMode } = useTheme();
+  const theme = useTheme();
+  const darkMode = theme?.darkMode ?? false;
 
   const featuredCards = [
     {
