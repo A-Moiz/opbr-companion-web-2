@@ -9,7 +9,9 @@ import Logo from '../../public/images/logo.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { darkMode, toggleDarkMode } = useTheme();
+  const theme = useTheme();
+  const darkMode = theme?.darkMode ?? false;
+  const toggleDarkMode = theme?.toggleDarkMode ?? (() => {});
 
   return (
     <header className="py-4 shadow-md" style={{ backgroundColor: darkMode ? '#121212' : '#FAF9F6' }}>

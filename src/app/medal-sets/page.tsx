@@ -20,7 +20,8 @@ interface MedalSet {
 const MedalSets = () => {
   const [medalSets, setMedalSets] = useState<MedalSet[]>([]);
   const [selectedMedalSet, setSelectedMedalSet] = useState<MedalSet | null>(null);
-  const { darkMode } = useTheme();
+  const theme = useTheme();
+  const darkMode = theme?.darkMode ?? false;
 
   useEffect(() => {
     const fetchMedalSets = async () => {

@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import '@/app/globals.css';
 import Header from '@/components/Header';
-
-import { ThemeProvider } from '../hooks/ThemeContext';
+import Providers from '@/components/Providers';
 
 export const metadata: Metadata = {
   title: 'OPBS Companion',
@@ -16,12 +15,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <ThemeProvider>
+        <Providers>
           <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-grow">{children}</main>
           </div>
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
