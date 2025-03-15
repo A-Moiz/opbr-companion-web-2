@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import supabase from '../../database/supabaseClient';
 import Image from 'next/image';
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
-import useTheme from '../../hooks/ThemeContext';
+import useTheme from '../../contexts/ThemeContext';
 import { useEffect } from 'react';
 
 interface MedalSet {

@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
-import useTheme from '../hooks/ThemeContext';
+import useTheme from '../contexts/ThemeContext';
 
 interface MedalSetCardProps {
   medals: string[];

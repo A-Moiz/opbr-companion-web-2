@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi'; // ✅ Imported from react-icons
-import useTheme from '../hooks/ThemeContext';
+import useTheme from '../contexts/ThemeContext';
 import Logo from '../../public/images/logo.png';
 
 const Header = () => {

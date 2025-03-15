@@ -1,6 +1,6 @@
 'use client';
 
-import useTheme from '@/hooks/ThemeContext';
+import useTheme from '@/contexts/ThemeContext';
 import Image from 'next/image';
 interface CharacterCardProps {
   name: string;
