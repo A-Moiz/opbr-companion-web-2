@@ -55,9 +55,8 @@ const Home = () => {
             src="https://pbs.twimg.com/media/Fgi_aZyaUAAXkoK.jpg"
             alt="OPBR Background"
             fill
-            style={{ objectFit: 'cover' }}
             priority
-            className="z-[-1]"
+            className="z-[-1] object-cover"
           />
         </div>
 
@@ -126,7 +125,7 @@ const Home = () => {
                   src="https://pbs.twimg.com/media/Fgi_aZyaUAAXkoK.jpg"
                   alt="New Character Release"
                   fill
-                  style={{ objectFit: 'cover' }}
+                  className="object-cover"
                 />
               </div>
               <div className="p-6">
@@ -146,7 +145,7 @@ const Home = () => {
                   src="https://pbs.twimg.com/media/Fgi_aZyaUAAXkoK.jpg"
                   alt="Medal Set Strategy"
                   fill
-                  style={{ objectFit: 'cover' }}
+                  className="object-cover"
                 />
               </div>
               <div className="p-6">
