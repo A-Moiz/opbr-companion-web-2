@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import {supabase} from '@/database/supabaseClient';
+import { supabase } from '@/database/supabaseClient';
 
 export async function GET() {
   try {
@@ -11,7 +11,6 @@ export async function GET() {
       console.error('Supabase error:', error.message);
       throw new Error(`Supabase error: ${error.message}`);
     }
-
 
     return NextResponse.json({
       success: true,
