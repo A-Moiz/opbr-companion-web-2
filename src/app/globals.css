@@ -7,7 +7,7 @@ body {
   transition: all 0.3s ease-in-out;
   min-height: 100vh;
 }
-/* Dark Mode */
+
 .dark body {
   background-color: #121212;
   color: #eaeaea;
@@ -17,13 +17,14 @@ body {
   background-color: #d4d4d4;
   color: #1b1b1b;
 }
+
 main {
   border: 2px solid #d4d4d4;
   min-height: 80vh;
   padding: 20px;
   border-radius: 10px;
 }
-/* Border effect for dark mode */
+
 .dark main {
   background-color: #181818;
   border: 2px solid #292929;
