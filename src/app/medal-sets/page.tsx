@@ -51,7 +51,7 @@ const MedalSets = () => {
 
   return (
     <div className={`p-6 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
-      <h2 className="text-2xl font-bold mb-4">Medal Sets</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">Browse Medal Sets & Find the Best Fit for Your Characters</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {medalSets.map((medalSet, index) => (
           <div key={index} className={`p-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-900' : 'bg-gray-200'}`}>
@@ -152,20 +152,13 @@ const MedalSets = () => {
 
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Tags:</h3>
-                  {selectedMedalSet.tags && selectedMedalSet.tags.length > 0 ? (
-                    <div className="flex flex-wrap gap-2">
-                      {selectedMedalSet.tags.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className={`px-2 py-1 rounded-md text-xs mr-2 inline-block ${darkMode ? 'bg-gray-700 text-gray-200' : 'bg-gray-200 text-gray-800'}`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>No tags</p>
-                  )}
+                  <div className={`${darkMode ? 'text-gray-200' : 'text-gray-800'} flex flex-col`}>
+                    {selectedMedalSet.tags && selectedMedalSet.tags.length > 0 ? (
+                      selectedMedalSet.tags.map((tag, idx) => <p key={idx}>{tag}</p>)
+                    ) : (
+                      <p>No tags</p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
