@@ -4,14 +4,11 @@ import { supabase } from '@/database/supabaseClient';
 export async function GET() {
   try {
     console.log('Fetching medal sets from Supabase...');
-
     const { data, error } = await supabase.from('medal_set').select('*');
-
     if (error) {
       console.error('Supabase error:', error.message);
       throw new Error(`Supabase error: ${error.message}`);
     }
-
     return NextResponse.json({
       success: true,
       message: 'Medal sets fetched successfully',
