@@ -4,22 +4,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaUsers, FaMedal, FaHandHoldingHeart } from 'react-icons/fa';
 import useTheme from '../contexts/ThemeContext';
-import { useEffect } from 'react';
 
 const Home = () => {
-  // TODO remove this after inspection
-  useEffect(() => {
-    const fetchExampleData = async () => {
-      try {
-        const response = await fetch('/api/home');
-        const data = await response.json();
-        console.log('Example data:', data);
-      } catch (error) {
-        console.error('Error fetching example data:', error);
-      }
-    };
-    fetchExampleData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchExampleData = async () => {
+  //     try {
+  //       const response = await fetch('/api/home');
+  //       const data = await response.json();
+  //       console.log('Example data:', data);
+  //     } catch (error) {
+  //       console.error('Error fetching example data:', error);
+  //     }
+  //   };
+  //   fetchExampleData();
+  // }, []);
 
   const theme = useTheme();
   const darkMode = theme?.darkMode ?? false;
