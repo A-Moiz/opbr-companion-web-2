@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**' // ✅ Allows images from any domain
+        hostname: '**'
       }
     ]
   }

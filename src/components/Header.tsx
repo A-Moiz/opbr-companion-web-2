@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi'; // ✅ Imported from react-icons
+import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
 import useTheme from '../contexts/ThemeContext';
 import Logo from '../../public/images/logo.png';
 
@@ -16,12 +16,10 @@ const Header = () => {
   return (
     <header className="py-4 shadow-md" style={{ backgroundColor: darkMode ? '#121212' : '#FAF9F6' }}>
       <div className="container mx-auto flex justify-between items-center px-4">
-        {/* Logo */}
         <Link href="/">
           <Image src={Logo} alt="OPBR App Logo" width={50} height={50} priority />
         </Link>
 
-        {/* Standard Nav */}
         <nav className="hidden md:flex space-x-8">
           <Link
             href="/"
@@ -53,12 +51,10 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Dark Mode Toggle */}
         <button onClick={toggleDarkMode} style={{ color: darkMode ? '#EAEAEA' : '#1B1B1B' }}>
           {darkMode ? <FiSun size={24} /> : <FiMoon size={24} />}
         </button>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           style={{ color: darkMode ? '#EAEAEA' : '#1B1B1B' }}
@@ -68,7 +64,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile View Menu Items */}
       {menuOpen && (
         <div
           className="md:hidden py-4 px-4 space-y-4"

@@ -38,10 +38,8 @@ const MedalSetCard: React.FC<MedalSetCardProps> = ({ medals, medalTraits, onView
         ))}
       </div>
 
-      {/* Divider */}
       <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} my-2`}></div>
 
-      {/* Button-like Link with pointer icon */}
       <button
         onClick={onViewDetails}
         className="w-full text-left text-blue-500 hover:underline py-1 flex items-center gap-1"

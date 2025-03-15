@@ -91,7 +91,6 @@ const MedalSets = () => {
         ))}
       </div>
 
-      {/*pop up for cards */}
       {selectedMedalSet && (
         <div
           className="fixed inset-0 ${darkMode ? 'bg-gray-800' : 'bg-gray-200'} bg-opacity-5 flex items-center justify-center z-50 p-4 backdrop-blur-md"
@@ -101,7 +100,6 @@ const MedalSets = () => {
             className={`${darkMode ? 'bg-gray-800' : 'bg-white'} w-full max-w-2xl rounded-lg shadow-lg relative max-h-full overflow-hidden flex flex-col`}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Fixed header */}
             <div
               className={`p-4 sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}
             >
