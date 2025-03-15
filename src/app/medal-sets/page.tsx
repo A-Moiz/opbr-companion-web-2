@@ -58,13 +58,7 @@ const MedalSets = () => {
             <div className="flex gap-2 flex-wrap justify-center sm:justify-start">
               {medalSet.medals.slice(0, 3).map((img, idx) => (
                 <div key={idx} className="w-20 h-20 relative">
-                  <Image
-                    src={img}
-                    alt={`Medal ${idx + 1}`}
-                    className="rounded-md"
-                    fill
-                    style={{ objectFit: 'contain' }}
-                  />
+                  <Image src={img} alt={`Medal ${idx + 1}`} className="rounded-md object-cover" fill />
                 </div>
               ))}
             </div>
