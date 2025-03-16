@@ -1,0 +1,34 @@
+{
+  "characters": [
+    {
+      "name": "Luffy",
+      "url": "https://drive.google.com/uc?export=view&id=16ADdwgQ1sf4Mn-6oBLBNU2Sk5aFBoJYw"
+    },
+    {
+      "name": "Zoro",
+      "url": "https://drive.google.com/uc?export=view&id=1YVgG-RPXkLf3IxfGY0ECSDQRUBUoD7OL"
+    },
+    {
+      "name": "Sanji",
+      "url": "https://drive.google.com/uc?export=view&id=19sMwYevl8f5pCBSUiFYZlSNG_PBCv25I"
+    },
+    {
+      "name": "Shanks",
+      "url": "https://drive.google.com/uc?export=view&id=1BJ4qx5WCC_pi-mUw4Aj4UE6sdbS49rTp"
+    }
+  ],
+  "banners": [
+    {
+      "name": "Banner",
+      "url": "https://scontent.flba1-1.fna.fbcdn.net/v/t39.30808-6/474932953_1085061293632211_3339171012958791434_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=FIH5ScexzZoQ7kNvgH2pqgv&_nc_oc=AdjJ0FpLAkT00nZn7KVo_uGfUSkaUShtwIdDcS76EN5SP7aZTpN1tQrkwJF1JYKfaSp68IXEhhoJFObDNqRBZpvX&_nc_zt=23&_nc_ht=scontent.flba1-1.fna&_nc_gid=8pqT60k1olLNsBkPWx_SBA&oh=00_AYGdu4unMfzRJz9iV8cXZl8GB2lu_1AKFZWYZTEyyx5iWg&oe=67DCA44F"
+    },
+    {
+      "name": "New Character",
+      "url": "https://play-lh.googleusercontent.com/Gw9Cl3ZhC3oNp0boLFWZynEq0VqLQQw0UNcDsJjjBpeO1B4g4AUd8M1vZnWgw2-oM8M=w851-h2160-rw"
+    },
+    {
+      "name": "Medal Set",
+      "url": "https://drive.google.com/uc?export=view&id=1A2SuDTNCweIBmPxW6l_1qCI9Dgua4lGu"
+    }
+  ]
+}
