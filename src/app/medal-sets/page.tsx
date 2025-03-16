@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { supabase } from '../../database/supabaseClient';
 import Image from 'next/image';
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
 import useTheme from '../../contexts/ThemeContext';
-import { useEffect } from 'react';
+import Tag from '@/components/Tag';
 
 interface MedalSet {
   id: string;
@@ -20,8 +20,12 @@ interface MedalSet {
 const MedalSets = () => {
   const [medalSets, setMedalSets] = useState<MedalSet[]>([]);
   const [selectedMedalSet, setSelectedMedalSet] = useState<MedalSet | null>(null);
+  const [filteredMedalSets, setFilteredMedalSets] = useState<MedalSet[]>([]);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const theme = useTheme();
   const darkMode = theme?.darkMode ?? false;
+
+  const tags = ['Attacker', 'Runner', 'Defender'];
 
   useEffect(() => {
     const fetchMedalSets = async () => {
@@ -31,11 +35,23 @@ const MedalSets = () => {
         console.error('Error fetching medal sets:', error.message);
       } else {
         setMedalSets(data as MedalSet[]);
+        setFilteredMedalSets(data as MedalSet[]);
       }
     };
 
     fetchMedalSets();
   }, []);
+
+  const handleTagClick = (tag: string) => {
+    if (selectedTag === tag) {
+      setSelectedTag(null);
+      setFilteredMedalSets(medalSets);
+    } else {
+      const filtered = medalSets.filter((medalSet) => medalSet.best_for === tag);
+      setFilteredMedalSets(filtered);
+      setSelectedTag(tag);
+    }
+  };
 
   useEffect(() => {
     if (selectedMedalSet) {
@@ -52,9 +68,17 @@ const MedalSets = () => {
   return (
     <div className={`p-6 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
       <h2 className="text-2xl font-bold mb-4 text-center">Browse Medal Sets & Find the Best Fit for Your Characters</h2>
+
+      <div className="flex flex-wrap justify-center mb-4">
+        {tags.map((tag, index) => (
+          <Tag key={index} label={tag} onClick={handleTagClick} isSelected={selectedTag === tag} />
+        ))}
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {medalSets.map((medalSet, index) => (
+        {filteredMedalSets.map((medalSet, index) => (
           <div key={index} className={`p-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-900' : 'bg-gray-200'}`}>
+            <h2 className="text-xl font-bold mb-4">{medalSet.name}</h2>
             <div className="flex gap-2 flex-wrap justify-center sm:justify-start">
               {medalSet.medals.slice(0, 3).map((img, idx) => (
                 <div key={idx} className="w-20 h-20 relative">
@@ -72,7 +96,7 @@ const MedalSets = () => {
               {medalSet.medal_traits.map((trait, idx) => (
                 <span
                   key={idx}
-                  className={`px-2 py-1 rounded-md text-xs mr-2 inline-block ${darkMode ? ' text-gray-200' : 'bg-gray-300 text-gray-800'}`}
+                  className={`px-2 py-1 rounded-md text-xs mr-2 inline-block ${darkMode ? ' text-gray-200' : 'text-gray-800'}`}
                 >
                   {trait}
                 </span>
