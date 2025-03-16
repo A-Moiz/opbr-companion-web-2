@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaUsers, FaMedal, FaHandHoldingHeart } from 'react-icons/fa';
-import useTheme from '../contexts/ThemeContext';
+import useTheme from '@/contexts/ThemeContext';
 
 const Home = () => {
   // useEffect(() => {

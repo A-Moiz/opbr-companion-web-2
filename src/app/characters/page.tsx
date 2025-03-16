@@ -1,5 +1,5 @@
 'use client';
-import CharacterCards from '../../components/CharacterCard';
+import CharacterCards from '@/components/CharacterCard';
 
 const Characters = () => {
   const characters = [
