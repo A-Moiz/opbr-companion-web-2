@@ -76,19 +76,13 @@ const MedalSets = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredMedalSets.map((medalSet, index) => (
+        {filteredMedalSets?.map((medalSet, index) => (
           <div key={index} className={`p-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-900' : 'bg-gray-200'}`}>
             <h2 className="text-xl font-bold mb-4">{medalSet.name}</h2>
             <div className="flex gap-2 flex-wrap justify-center sm:justify-start">
               {medalSet.medals.slice(0, 3).map((img, idx) => (
                 <div key={idx} className="w-20 h-20 relative">
-                  <Image
-                    src={img}
-                    alt={`Medal ${idx + 1}`}
-                    className="rounded-md"
-                    fill
-                    style={{ objectFit: 'contain' }}
-                  />
+                  <Image src={img} alt={`Medal ${idx + 1}`} className="rounded-md object-contain" fill />
                 </div>
               ))}
             </div>

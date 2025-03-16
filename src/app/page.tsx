@@ -52,14 +52,7 @@ const Home = () => {
         <div className="absolute inset-0 z-0">
           <div className={`absolute inset-0 ${darkMode ? 'bg-black opacity-70' : 'bg-white opacity-30'}`}></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 dark:from-transparent dark:to-gray-900"></div>
-          <Image
-            src={Images.banners[0].url}
-            alt="OPBR Background"
-            fill
-            style={{ objectFit: 'cover' }}
-            priority
-            className="z-[-1]"
-          />
+          <Image src={Images.banners[0].url} alt="OPBR Background" fill priority className="z-[-1] object-cover" />
         </div>
 
         <div className="container mx-auto px-4 z-10 text-center">
@@ -123,7 +116,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className={`rounded-lg shadow-lg overflow-hidden ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
               <div className="relative h-48">
-                <Image src={Images.banners[1].url} alt="New Character Release" fill style={{ objectFit: 'cover' }} />
+                <Image src={Images.banners[1].url} alt="New Character Release" fill className="object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">New Character Release!</h3>
@@ -138,7 +131,7 @@ const Home = () => {
 
             <div className={`rounded-lg shadow-lg overflow-hidden ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
               <div className="relative h-48">
-                <Image src={Images.banners[2].url} alt="Medal Set Strategy" fill style={{ objectFit: 'cover' }} />
+                <Image src={Images.banners[2].url} alt="Medal Set Strategy" fill className="object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">Discover the best sets for each class!</h3>
