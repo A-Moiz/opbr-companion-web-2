@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
 import useTheme from '../contexts/ThemeContext';
 import Logo from '../../public/images/logo.png';
+import NavLink from './NavLink';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,34 +22,10 @@ const Header = () => {
         </Link>
 
         <nav className="hidden md:flex space-x-8">
-          <Link
-            href="/"
-            style={{ color: darkMode ? '#EAEAEA' : '#1B1B1B' }}
-            className="hover:text-[#FF7F50] transition-colors"
-          >
-            Home
-          </Link>
-          <Link
-            href="/characters"
-            style={{ color: darkMode ? '#EAEAEA' : '#1B1B1B' }}
-            className="hover:text-[#FF7F50] transition-colors"
-          >
-            Characters
-          </Link>
-          <Link
-            href="/medal-sets"
-            style={{ color: darkMode ? '#EAEAEA' : '#1B1B1B' }}
-            className="hover:text-[#FF7F50] transition-colors"
-          >
-            Medal Sets
-          </Link>
-          <Link
-            href="/supports"
-            style={{ color: darkMode ? '#EAEAEA' : '#1B1B1B' }}
-            className="hover:text-[#FF7F50] transition-colors"
-          >
-            Support
-          </Link>
+          <NavLink href="/" title="Home" darkMode={darkMode} />
+          <NavLink href="/characters" title="Characters" darkMode={darkMode} />
+          <NavLink href="/medal-sets" title="Medal Sets" darkMode={darkMode} />
+          <NavLink href="/supports" title="Support" darkMode={darkMode} />
         </nav>
 
         <button onClick={toggleDarkMode} style={{ color: darkMode ? '#EAEAEA' : '#1B1B1B' }}>
@@ -69,18 +46,10 @@ const Header = () => {
           className="md:hidden py-4 px-4 space-y-4"
           style={{ backgroundColor: darkMode ? '#121212' : '#F4F2ED', color: darkMode ? '#EAEAEA' : '#1B1B1B' }}
         >
-          <Link href="/" className="block hover:text-[#FF7F50] transition-colors">
-            Home
-          </Link>
-          <Link href="/characters" className="block hover:text-[#FF7F50] transition-colors">
-            Characters
-          </Link>
-          <Link href="/medal-sets" className="block hover:text-[#FF7F50] transition-colors">
-            Medal Sets
-          </Link>
-          <Link href="/supports" className="block hover:text-[#FF7F50] transition-colors">
-            Support
-          </Link>
+          <NavLink href="/" title="Home" darkMode={darkMode} />
+          <NavLink href="/characters" title="Characters" darkMode={darkMode} />
+          <NavLink href="/medal-sets" title="Medal Sets" darkMode={darkMode} />
+          <NavLink href="/supports" title="Support" darkMode={darkMode} />
         </div>
       )}
     </header>
