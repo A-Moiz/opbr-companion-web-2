@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
 import useTheme from '@/contexts/ThemeContext';
+import Logo from '@/public/images/logo.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,7 +17,7 @@ const Header = () => {
     <header className="py-4 shadow-md" style={{ backgroundColor: darkMode ? '#121212' : '#FAF9F6' }}>
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link href="/">
-          <Image src="/images/logo.png" alt="OPBR App Logo" width={50} height={50} priority />
+          <Image src={Logo} alt="OPBR App Logo" width={50} height={50} priority />
         </Link>
 
         <nav className="hidden md:flex space-x-8">
