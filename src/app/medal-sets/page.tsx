@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../../database/supabaseClient';
+import supabase from '@/database/supabaseClient';
 import Image from 'next/image';
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
-import useTheme from '../../contexts/ThemeContext';
+import useTheme from '@/contexts/ThemeContext';
 import Tag from '@/components/Tag';
+
 
 interface MedalSet {
   id: string;
