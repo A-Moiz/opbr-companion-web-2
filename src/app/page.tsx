@@ -27,19 +27,19 @@ const Home = () => {
     {
       title: 'Characters',
       description: 'Discover top-tier characters and their abilities',
-      icon: <FaUsers size={32} />,
+      icon: <FaUsers size={32} className={darkMode ? 'text-coral' : 'text-gray-800'} />,
       link: '/characters'
     },
     {
       title: 'Medal Sets',
       description: 'Optimize your battle strategy with perfect medal combinations',
-      icon: <FaMedal size={32} />,
+      icon: <FaMedal size={32} className={darkMode ? 'text-coral' : 'text-gray-800'} />,
       link: '/medal-sets'
     },
     {
       title: 'Support',
       description: 'Enhance your team with the best support characters',
-      icon: <FaHandHoldingHeart size={32} />,
+      icon: <FaHandHoldingHeart size={32} className={darkMode ? 'text-coral' : 'text-gray-800'} />,
       link: '/supports'
     }
   ];
