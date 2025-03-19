@@ -1,12 +1,10 @@
-import React from 'react';
-
 interface TagProps {
   label: string;
   onClick: (label: string) => void;
   isSelected: boolean;
 }
 
-const Tag: React.FC<TagProps> = ({ label, onClick, isSelected }) => {
+const Tag = ({ label, onClick, isSelected }: TagProps) => {
   return (
     <button
       className={`px-3 py-1 rounded-full text-sm mr-2 mb-2 transition-colors 

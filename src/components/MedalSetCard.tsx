@@ -9,7 +9,7 @@ interface MedalSetCardProps {
   onViewDetails: () => void;
 }
 
-const MedalSetCard: React.FC<MedalSetCardProps> = ({ medals, medalTraits, onViewDetails }) => {
+const MedalSetCard = ({ medals, medalTraits, onViewDetails }: MedalSetCardProps) => {
   const theme = useTheme();
   const darkMode = theme?.darkMode ?? false;
 
@@ -38,7 +38,7 @@ const MedalSetCard: React.FC<MedalSetCardProps> = ({ medals, medalTraits, onView
         ))}
       </div>
 
-      <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} my-2`}></div>
+      <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} my-2`} />
 
       <button
         onClick={onViewDetails}
