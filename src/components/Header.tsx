@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
-import useTheme from '../contexts/ThemeContext';
+import useTheme from '@/contexts/ThemeContext';
 import Logo from '../../public/images/logo.png';
 import NavLink from './NavLink';
 
