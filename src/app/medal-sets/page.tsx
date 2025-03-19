@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import supabase from '@/database/supabaseClient';
 import Image from 'next/image';
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
 import useTheme from '@/contexts/ThemeContext';
-import { useEffect } from 'react';
+import Tag from '@/components/Tag';
 
 interface MedalSet {
   id: string;
@@ -20,8 +20,11 @@ interface MedalSet {
 const MedalSets = () => {
   const [medalSets, setMedalSets] = useState<MedalSet[]>([]);
   const [selectedMedalSet, setSelectedMedalSet] = useState<MedalSet | null>(null);
+  const [filteredMedalSets, setFilteredMedalSets] = useState<MedalSet[]>([]);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const theme = useTheme();
   const darkMode = theme?.darkMode ?? false;
+  const tags = ['Attacker', 'Runner', 'Defender'];
 
   useEffect(() => {
     const fetchMedalSets = async () => {
@@ -31,11 +34,23 @@ const MedalSets = () => {
         console.error('Error fetching medal sets:', error.message);
       } else {
         setMedalSets(data as MedalSet[]);
+        setFilteredMedalSets(data as MedalSet[]);
       }
     };
 
     fetchMedalSets();
   }, []);
+
+  const handleTagClick = (tag: string) => {
+    if (selectedTag === tag) {
+      setSelectedTag(null);
+      setFilteredMedalSets(medalSets);
+    } else {
+      const filtered = medalSets.filter((medalSet) => medalSet.best_for === tag);
+      setFilteredMedalSets(filtered);
+      setSelectedTag(tag);
+    }
+  };
 
   useEffect(() => {
     if (selectedMedalSet) {
@@ -49,30 +64,42 @@ const MedalSets = () => {
     };
   }, [selectedMedalSet]);
 
+  const processedMedalSets = useMemo(() => {
+    return (
+      filteredMedalSets?.map((medalSet) => ({
+        ...medalSet,
+        displayMedals: medalSet?.medals?.slice(0, 3) || [],
+        displayTraits: medalSet?.medal_traits || []
+      })) || []
+    );
+  }, [filteredMedalSets]);
+
   return (
     <div className={`p-6 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
       <h2 className="text-2xl font-bold mb-4 text-center">Browse Medal Sets & Find the Best Fit for Your Characters</h2>
+
+      <div className="flex flex-wrap justify-center mb-4">
+        {tags.map((tag, index) => (
+          <Tag key={index} label={tag} onClick={handleTagClick} isSelected={selectedTag === tag} />
+        ))}
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {medalSets.map((medalSet, index) => (
+        {processedMedalSets.map((medalSet, index) => (
           <div key={index} className={`p-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-900' : 'bg-gray-200'}`}>
+            <h2 className="text-xl font-bold mb-4">{medalSet?.name}</h2>
             <div className="flex gap-2 flex-wrap justify-center sm:justify-start">
-              {medalSet.medals.slice(0, 3).map((img, idx) => (
+              {medalSet?.displayMedals?.map((img, idx) => (
                 <div key={idx} className="w-20 h-20 relative">
-                  <Image
-                    src={img}
-                    alt={`Medal ${idx + 1}`}
-                    className="rounded-md"
-                    fill
-                    style={{ objectFit: 'contain' }}
-                  />
+                  <Image src={img} alt={`Medal ${idx + 1}`} className="rounded-md object-contain" fill />
                 </div>
               ))}
             </div>
             <div className="mt-2 text-sm">
-              {medalSet.medal_traits.map((trait, idx) => (
+              {medalSet?.displayTraits?.map((trait, idx) => (
                 <span
                   key={idx}
-                  className={`px-2 py-1 rounded-md text-xs mr-2 inline-block ${darkMode ? ' text-gray-200' : 'bg-gray-300 text-gray-800'}`}
+                  className={`px-2 py-1 rounded-md text-xs mr-2 inline-block ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}
                 >
                   {trait}
                 </span>
@@ -103,7 +130,7 @@ const MedalSets = () => {
             <div
               className={`p-4 sticky top-0 ${darkMode ? 'bg-gray-800' : 'bg-white'} border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}
             >
-              <h2 className="text-xl font-bold">{selectedMedalSet.name}</h2>
+              <h2 className="text-xl font-bold">{selectedMedalSet?.name}</h2>
               <button
                 className={`${darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
                 onClick={() => setSelectedMedalSet(null)}
@@ -116,7 +143,7 @@ const MedalSets = () => {
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4">
                 <table className="w-full text-sm text-left">
                   <tbody>
-                    {selectedMedalSet.medals.map((img, idx) => (
+                    {selectedMedalSet?.medals?.map((img, idx) => (
                       <tr
                         key={idx}
                         className={`${idx % 2 === 0 ? (darkMode ? 'bg-gray-700' : 'bg-gray-100') : darkMode ? 'bg-gray-800' : 'bg-white'} border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}
@@ -126,7 +153,7 @@ const MedalSets = () => {
                             <Image src={img} alt={`Medal ${idx + 1}`} className="rounded-md" width={64} height={64} />
                           </div>
                         </td>
-                        <td className="px-4 py-4 text-sm">{selectedMedalSet.medal_traits[idx] || '-'}</td>
+                        <td className="px-4 py-4 text-sm">{selectedMedalSet?.medal_traits?.[idx] || '-'}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -137,21 +164,21 @@ const MedalSets = () => {
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Best for:</h3>
                   <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                    {selectedMedalSet.best_for || 'N/A'}
+                    {selectedMedalSet?.best_for || 'N/A'}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Description:</h3>
                   <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                    {selectedMedalSet.description || 'No description available'}
+                    {selectedMedalSet?.description || 'No description available'}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Tags:</h3>
                   <div className={`${darkMode ? 'text-gray-200' : 'text-gray-800'} flex flex-col`}>
-                    {selectedMedalSet.tags && selectedMedalSet.tags.length > 0 ? (
+                    {selectedMedalSet?.tags && selectedMedalSet.tags.length > 0 ? (
                       selectedMedalSet.tags.map((tag, idx) => <p key={idx}>{tag}</p>)
                     ) : (
                       <p>No tags</p>

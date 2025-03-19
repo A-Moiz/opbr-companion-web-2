@@ -3,6 +3,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaUsers, FaMedal, FaHandHoldingHeart } from 'react-icons/fa';
+
+import Images from '@/data/images.json';
+
 import useTheme from '@/contexts/ThemeContext';
 
 const Home = () => {
@@ -26,19 +29,19 @@ const Home = () => {
     {
       title: 'Characters',
       description: 'Discover top-tier characters and their abilities',
-      icon: <FaUsers size={32} />,
+      icon: <FaUsers size={32} className={darkMode ? 'text-coral' : 'text-gray-800'} />,
       link: '/characters'
     },
     {
       title: 'Medal Sets',
       description: 'Optimize your battle strategy with perfect medal combinations',
-      icon: <FaMedal size={32} />,
+      icon: <FaMedal size={32} className={darkMode ? 'text-coral' : 'text-gray-800'} />,
       link: '/medal-sets'
     },
     {
       title: 'Support',
       description: 'Enhance your team with the best support characters',
-      icon: <FaHandHoldingHeart size={32} />,
+      icon: <FaHandHoldingHeart size={32} className={darkMode ? 'text-coral' : 'text-gray-800'} />,
       link: '/supports'
     }
   ];
@@ -51,14 +54,7 @@ const Home = () => {
         <div className="absolute inset-0 z-0">
           <div className={`absolute inset-0 ${darkMode ? 'bg-black opacity-70' : 'bg-white opacity-30'}`}></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 dark:from-transparent dark:to-gray-900"></div>
-          <Image
-            src="https://pbs.twimg.com/media/Fgi_aZyaUAAXkoK.jpg"
-            alt="OPBR Background"
-            fill
-            style={{ objectFit: 'cover' }}
-            priority
-            className="z-[-1]"
-          />
+          <Image src={Images.banners[0].url} alt="OPBR Background" fill priority className="z-[-1] object-cover" />
         </div>
 
         <div className="container mx-auto px-4 z-10 text-center">
@@ -122,12 +118,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className={`rounded-lg shadow-lg overflow-hidden ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
               <div className="relative h-48">
-                <Image
-                  src="https://pbs.twimg.com/media/Fgi_aZyaUAAXkoK.jpg"
-                  alt="New Character Release"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
+                <Image src={Images.banners[1].url} alt="New Character Release" fill className="object-cover" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">New Character Release!</h3>
@@ -142,15 +133,10 @@ const Home = () => {
 
             <div className={`rounded-lg shadow-lg overflow-hidden ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
               <div className="relative h-48">
-                <Image
-                  src="https://pbs.twimg.com/media/Fgi_aZyaUAAXkoK.jpg"
-                  alt="Medal Set Strategy"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
+                <Image src={Images.banners[2].url} alt="Medal Set Strategy" fill className="object-cover" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Top Medal Sets for Season 8</h3>
+                <h3 className="text-xl font-bold mb-2">Discover the best sets for each class!</h3>
                 <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   Discover the best medal combinations to dominate in the current meta.
                 </p>
