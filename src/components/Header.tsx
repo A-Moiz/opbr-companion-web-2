@@ -37,14 +37,14 @@ const Header = () => {
         </button>
       </div>
 
-      {menuOpen && (
+      {menuOpen ? (
         <div className={`md:hidden py-4 px-4 space-y-4 ${darkMode ? '#121212' : '#F4F2ED'}`}>
           <NavLink href="/" title="Home" darkMode={darkMode} />
           <NavLink href="/characters" title="Characters" darkMode={darkMode} />
           <NavLink href="/medal-sets" title="Medal Sets" darkMode={darkMode} />
           <NavLink href="/supports" title="Support" darkMode={darkMode} />
         </div>
-      )}
+      ) : null}
     </header>
   );
 };
