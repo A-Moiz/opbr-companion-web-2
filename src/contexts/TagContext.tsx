@@ -8,6 +8,8 @@ interface TagContextType {
 
 const TagContext = createContext<TagContextType | undefined>(undefined);
 
+const tags: string[] = [];
+
 export const TagProvider = ({ children }: { children: ReactNode }) => {
   return <TagContext.Provider value={{ tags }}>{children}</TagContext.Provider>;
 };
