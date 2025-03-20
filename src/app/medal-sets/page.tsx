@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState, useMemo } from 'react';
-import supabase from '@/database/supabaseClient';
 import Image from 'next/image';
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
 import useTheme from '@/contexts/ThemeContext';
@@ -28,13 +27,25 @@ const MedalSets = () => {
 
   useEffect(() => {
     const fetchMedalSets = async () => {
-      const { data, error } = await supabase.from('medal_set').select('*');
+      try {
+        const response = await fetch('/api/medal-sets');
 
-      if (error) {
-        console.error('Error fetching medal sets:', error.message);
-      } else {
-        setMedalSets(data as MedalSet[]);
-        setFilteredMedalSets(data as MedalSet[]);
+        if (!response.ok) {
+          console.error('Error fetching medal sets:', response.statusText);
+          return;
+        }
+
+        const result = await response.json();
+
+        if (!result.success) {
+          console.error('Error fetching medal sets:', result.message);
+          return;
+        }
+
+        setMedalSets(result.data);
+        setFilteredMedalSets(result.data);
+      } catch (error) {
+        console.error('Error fetching medal sets:', error);
       }
     };
 
