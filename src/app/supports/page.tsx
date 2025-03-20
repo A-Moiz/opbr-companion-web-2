@@ -21,7 +21,7 @@ const SupportCards = () => {
   const [supports, setSupports] = useState<Support[]>([]);
   const [filteredSupports, setFilteredSupports] = useState<Support[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [isTagsExpanded, setIsTagsExpanded] = useState<boolean>(false);
   const [isColorsExpanded, setIsColorsExpanded] = useState<boolean>(false);
   const tagsRef = React.useRef<HTMLDivElement>(null);
@@ -29,10 +29,8 @@ const SupportCards = () => {
   const theme = useTheme();
   const darkMode = theme?.darkMode ?? false;
 
-  // Colors from your filter list
   const availableColors = useMemo(() => ['Red', 'Green', 'Blue', 'Light', 'Dark'], []);
 
-  // Tags from your filter list
   const availableTags = useMemo(
     () => [
       'Attacker',
@@ -61,29 +59,6 @@ const SupportCards = () => {
     []
   );
 
-  // Extract colors from support data
-  const allColors = useMemo(() => {
-    const colorSet = new Set<string>();
-    supports.forEach((support) => {
-      if (support.support_color) {
-        const colors = support.support_color.split(', ');
-        colors.forEach((color) => colorSet.add(color.trim()));
-      }
-    });
-    return Array.from(colorSet);
-  }, [supports]);
-
-  // Extract tags from support data
-  const allTags = useMemo(() => {
-    const tagSet = new Set<string>();
-    supports.forEach((support) => {
-      if (support.support_tags) {
-        support.support_tags.forEach((tag) => tagSet.add(tag));
-      }
-    });
-    return Array.from(tagSet);
-  }, [supports]);
-
   useEffect(() => {
     const fetchSupports = async () => {
       try {
@@ -109,33 +84,31 @@ const SupportCards = () => {
   useEffect(() => {
     setFilteredSupports(
       supports.filter((support) => {
-        const hasMatchingTag =
-          selectedTags.length === 0 || selectedTags.some((tag) => support.support_tags?.includes(tag));
+        // For tags: ALL selected tags must be present
+        const hasAllSelectedTags =
+          selectedTags.length === 0 || selectedTags.every((tag) => support.support_tags?.includes(tag));
 
-        const hasMatchingColor =
-          selectedColors.length === 0 || selectedColors.some((color) => support.support_color?.includes(color));
+        // For color: The selected color must be included (if any is selected)
+        const hasMatchingColor = !selectedColor || support.support_color?.includes(selectedColor);
 
-        return hasMatchingTag && hasMatchingColor;
+        return hasAllSelectedTags && hasMatchingColor;
       })
     );
-  }, [selectedTags, selectedColors, supports]);
+  }, [selectedTags, selectedColor, supports]);
 
   const handleTagClick = useCallback((tag: string) => {
     setSelectedTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
   }, []);
 
   const handleColorClick = useCallback((color: string) => {
-    setSelectedColors((prev) => (prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color]));
+    setSelectedColor((prev) => (prev === color ? null : color));
   }, []);
 
-  // References for expanded content
   const tagsContentRef = React.useRef<HTMLDivElement>(null);
   const colorsContentRef = React.useRef<HTMLDivElement>(null);
 
-  // Handle click outside to close expanded filters
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // For Tags filter
       const isClickInsideTagsButton = tagsRef.current && tagsRef.current.contains(event.target as Node);
       const isClickInsideTagsContent = tagsContentRef.current && tagsContentRef.current.contains(event.target as Node);
 
@@ -143,7 +116,6 @@ const SupportCards = () => {
         setIsTagsExpanded(false);
       }
 
-      // For Colors filter
       const isClickInsideColorsButton = colorsRef.current && colorsRef.current.contains(event.target as Node);
       const isClickInsideColorsContent =
         colorsContentRef.current && colorsContentRef.current.contains(event.target as Node);
@@ -159,7 +131,6 @@ const SupportCards = () => {
     };
   }, [isTagsExpanded, isColorsExpanded]);
 
-  // Split color string into array of individual colors
   const parseColors = (colorString: string | null): string[] => {
     if (!colorString) return [];
     return colorString.split(', ').map((color) => color.trim());
@@ -189,11 +160,9 @@ const SupportCards = () => {
               {selectedTags.length > 0 && !isTagsExpanded && (
                 <p className="text-center text-sm mt-2">
                   <span className="font-medium">Selected: </span>
-                  {selectedTags.length > 0
-                    ? selectedTags.length > 2
-                      ? `${selectedTags.slice(0, 2).join(', ')} +${selectedTags.length - 2} more`
-                      : selectedTags.join(', ')
-                    : 'None'}
+                  {selectedTags.length > 2
+                    ? `${selectedTags.slice(0, 2).join(', ')} +${selectedTags.length - 2} more`
+                    : selectedTags.join(', ')}
                 </p>
               )}
             </div>
@@ -210,20 +179,15 @@ const SupportCards = () => {
                 {isColorsExpanded ? <IoChevronUpOutline size={20} /> : <IoChevronDownOutline size={20} />}
               </button>
 
-              {selectedColors.length > 0 && !isColorsExpanded && (
+              {selectedColor && !isColorsExpanded && (
                 <p className="text-center text-sm mt-2">
                   <span className="font-medium">Selected: </span>
-                  {selectedColors.length > 0
-                    ? selectedColors.length > 2
-                      ? `${selectedColors.slice(0, 2).join(', ')} +${selectedColors.length - 2} more`
-                      : selectedColors.join(', ')
-                    : 'None'}
+                  {selectedColor}
                 </p>
               )}
             </div>
           </div>
 
-          {/* Expanded content section - appears below the buttons */}
           <div className="mt-4">
             {isTagsExpanded && (
               <div ref={tagsContentRef} className="mb-6 p-3 border border-gray-200 dark:border-gray-700 rounded-lg">
@@ -252,13 +216,12 @@ const SupportCards = () => {
                       key={index}
                       label={color}
                       onClick={() => handleColorClick(color)}
-                      isSelected={selectedColors.includes(color)}
+                      isSelected={selectedColor === color}
                     />
                   ))}
                 </div>
                 <p className="text-center text-sm">
-                  <span className="font-medium">Selected Colors:</span>{' '}
-                  {selectedColors.length > 0 ? selectedColors.join(', ') : 'None selected'}
+                  <span className="font-medium">Selected Color:</span> {selectedColor || 'None selected'}
                 </p>
               </div>
             )}
@@ -272,7 +235,7 @@ const SupportCards = () => {
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
               onClick={() => {
                 setSelectedTags([]);
-                setSelectedColors([]);
+                setSelectedColor(null);
               }}
             >
               Clear Filters
