@@ -24,8 +24,10 @@ const SupportCards = () => {
   const theme = useTheme();
   const darkMode = theme?.darkMode ?? false;
 
+  // Colors from your filter list
   const availableColors = useMemo(() => ['Red', 'Green', 'Blue', 'Light', 'Dark'], []);
 
+  // Combined Tags list
   const availableTags = useMemo(
     () => [
       'Attacker',
@@ -49,7 +51,14 @@ const SupportCards = () => {
       'Animal Kingdom Pirates',
       'Revolutionary Army',
       'Roger Pirates / Ex-Roger Pirates',
-      'Fish-Man'
+      'Fish-Man',
+      'Devil Fruit',
+      'Swordsman',
+      'Supernova',
+      'Marine',
+      'Pirate',
+      'Wano',
+      'Thriller Bark'
     ],
     []
   );
@@ -94,6 +103,13 @@ const SupportCards = () => {
     setSelectedTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
   }, []);
 
+  const isTagSelected = useCallback(
+    (tag: string) => {
+      return selectedTags.includes(tag);
+    },
+    [selectedTags]
+  );
+
   const handleColorClick = useCallback((color: string) => {
     setSelectedColors((prev) => (prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color]));
   }, []);
@@ -124,22 +140,19 @@ const SupportCards = () => {
           Browse Support Cards & Find the Best Fit for Your Characters
         </h2>
 
+        {/* Types filter section - matches MedalSets style */}
         <div className="flex flex-wrap justify-center mb-4">
           <div className="mb-4 mr-4">
             <h3 className="text-lg font-semibold mb-2 text-center">Types</h3>
             <div className="flex flex-wrap justify-center gap-2">
               {availableTags.map((tag, index) => (
-                <Tag
-                  key={index}
-                  label={tag}
-                  onClick={() => handleTagClick(tag)}
-                  isSelected={selectedTags.includes(tag)}
-                />
+                <Tag key={index} label={tag} onClick={handleTagClick} isSelected={isTagSelected(tag)} />
               ))}
             </div>
           </div>
         </div>
 
+        {/* Colors filter section - matches MedalSets style */}
         <div className="flex flex-wrap justify-center mb-6">
           <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2 text-center">Colors</h3>
