@@ -142,6 +142,7 @@ const SupportCards = () => {
         <h2 className="text-2xl font-bold mb-6 text-center">
           Browse Support Cards & Find the Best Fit for Your Characters
         </h2>
+        <p className="text-center mb-4">Note: More supports will be added in the future.</p>
 
         <div className="bg-opacity-70 backdrop-blur-sm rounded-lg p-4 mb-8 shadow-md">
           <div className="flex flex-wrap gap-4 justify-center">
@@ -152,7 +153,7 @@ const SupportCards = () => {
               >
                 <h3 className="text-xl font-semibold flex items-center gap-2">
                   <IoIosPricetag className="inline" />
-                  <span>Types</span>
+                  <span>Tags</span>
                 </h3>
                 {isTagsExpanded ? <IoChevronUpOutline size={20} /> : <IoChevronDownOutline size={20} />}
               </button>
@@ -202,7 +203,7 @@ const SupportCards = () => {
                   ))}
                 </div>
                 <p className="text-center text-sm">
-                  <span className="font-medium">Selected Types:</span>{' '}
+                  <span className="font-medium">Selected Tags:</span>{' '}
                   {selectedTags.length > 0 ? selectedTags.join(', ') : 'None selected'}
                 </p>
               </div>
@@ -253,13 +254,15 @@ const SupportCards = () => {
                     darkMode ? 'bg-gray-900' : 'bg-white'
                   }`}
                 >
-                  <div className="relative w-full h-64">
+                  <div className="relative w-full h-72">
                     <Image
                       src={support_img}
                       alt={`Support Card ${id}`}
-                      className="rounded-t-lg object-cover"
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="rounded-t-lg object-contain w-full h-full"
+                      fill={false}
+                      width={400}
+                      height={300}
+                      priority={id <= 6}
                     />
                   </div>
 

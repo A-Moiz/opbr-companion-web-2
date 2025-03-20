@@ -14,6 +14,7 @@ const Characters = () => {
   return (
     <div className="min-h-screen p-6">
       <h2 className="text-2xl font-bold text-center mb-6"> Find the Best Guide for Your Favourite Characters</h2>
+      <p className="text-center mb-4">Note: More Characters will be added in the future.</p>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 pb-16">
         {characters.map((char, idx) => (
           <div key={idx} className="flex justify-center p-0">
