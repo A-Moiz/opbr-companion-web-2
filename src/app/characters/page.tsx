@@ -43,8 +43,8 @@ const Characters = () => {
         if (tagsModule?.TagsClass && Array.isArray(tagsModule.TagsClass)) {
           setTagsClass(tagsModule.TagsClass);
         }
-      } catch (err) {
-        console.warn('Using default tags - failed to import TagsClass');
+      } catch (error) {
+        console.warn('Using default tags - failed to import TagsClass ', error);
       }
     };
 
