@@ -151,7 +151,6 @@ const Characters = () => {
       <div className="flex flex-wrap justify-center mb-4">
         {tagsClass.map((tag, index) => (
           <Tag key={index} label={tag} onClick={() => handleTagClick(tag)} isSelected={selectedTag === tag} />
-
         ))}
       </div>
 
@@ -222,7 +221,11 @@ const Characters = () => {
             <div
               className={`p-4 sticky top-0 z-10 ${darkMode ? 'bg-gray-800' : 'bg-white'} border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'} flex justify-between items-center`}
             >
-              <h2 className="text-xl font-bold">{selectedCharacter.name}</h2>
+              <div>
+                <h2 className="text-xl font-bold">{selectedCharacter.name}</h2>
+                <h3 className="text-lg font-semibold">{selectedCharacter.title}</h3>
+              </div>
+
               <button
                 className={`${darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
                 onClick={() => setSelectedCharacter(null)}
@@ -233,6 +236,24 @@ const Characters = () => {
             </div>
 
             <div className="p-4 overflow-y-auto">
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Character Tags:</h3>
+                <div className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} flex flex-col space-y-1`}>
+                  {Array.isArray(selectedCharacter.character_tags) &&
+                    selectedCharacter.character_tags.map((tag, idx) => <p key={idx}>{tag}</p>)}
+                </div>
+              </div>
+
+              <div>
+                <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4`}></div>
+                <h3 className="font-semibold text-lg mb-2">Color:</h3>
+                <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedCharacter.color || 'N/A'}</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Class:</h3>
+                <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedCharacter.class || 'N/A'}</p>
+              </div>
+              <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4`}></div>
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4">
                 <table className="w-full text-sm text-left">
                   <tbody>
@@ -260,30 +281,10 @@ const Characters = () => {
               </div>
 
               <div className={`my-4 space-y-4`}>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Best for:</h3>
-                  <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                    {selectedCharacter.class || 'N/A'}
-                  </p>
-                </div>
-
-                <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4`}></div>
-
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Description:</h3>
-                  <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                    {selectedCharacter.stat_message || 'No description available'}
-                  </p>
-                </div>
-
-                <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4`}></div>
-
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Tags:</h3>
-                  <div className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} flex flex-col space-y-1`}>
-                    {Array.isArray(selectedCharacter.character_tags) &&
-                      selectedCharacter.character_tags.map((tag, idx) => <p key={idx}>{tag}</p>)}
-                  </div>
+                <h3 className="font-semibold text-lg mb-2">Medal Tags:</h3>
+                <div className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} flex flex-col space-y-1`}>
+                  {Array.isArray(selectedCharacter.medal_tags) &&
+                    selectedCharacter.medal_tags.map((tag, idx) => <p key={idx}>{tag}</p>)}
                 </div>
 
                 {selectedCharacter?.recommended_set &&
@@ -313,6 +314,16 @@ const Characters = () => {
                       </div>
                     </>
                   )}
+
+                <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4`}></div>
+
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Recommended Stats:</h3>
+                  <h2 className="mb-2">{selectedCharacter.recommended_stats}</h2>
+                  <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {selectedCharacter?.stat_message || 'No information available'}
+                  </p>
+                </div>
 
                 {selectedCharacter?.guide && (
                   <>
