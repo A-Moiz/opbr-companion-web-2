@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
 import useTheme from '@/contexts/ThemeContext';
 import Tag from '@/components/Tag';
+import { TagsClass } from '@/constants/tags';
 
 interface MedalSet {
   id: string;
@@ -23,7 +24,6 @@ const MedalSets = () => {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const theme = useTheme();
   const darkMode = theme?.darkMode ?? false;
-  const tags = ['Attacker', 'Runner', 'Defender'];
 
   useEffect(() => {
     const fetchMedalSets = async () => {
@@ -91,44 +91,61 @@ const MedalSets = () => {
       <p className="text-center mb-4">Note: More supports will be added in the future.</p>
 
       <div className="flex flex-wrap justify-center mb-4">
-        {tags.map((tag, index) => (
-          <Tag key={index} label={tag} onClick={handleTagClick} isSelected={selectedTag === tag} />
+        {TagsClass.map((tag, index) => (
+          <Tag key={index} label={tag} onClick={() => handleTagClick(tag)} isSelected={selectedTag === tag} />
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {processedMedalSets.map((medalSet, index) => (
-          <div key={index} className={`p-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-900' : 'bg-gray-200'}`}>
-            <h2 className="text-xl font-bold mb-4">{medalSet?.name}</h2>
-            <div className="flex gap-2 flex-wrap justify-center sm:justify-start">
-              {medalSet?.displayMedals?.map((img, idx) => (
-                <div key={idx} className="w-20 h-20 relative">
-                  <Image src={img} alt={`Medal ${idx + 1}`} className="rounded-md object-contain" fill />
-                </div>
-              ))}
-            </div>
-            <div className="mt-2 text-sm">
-              {medalSet?.displayTraits?.map((trait, idx) => (
-                <span
-                  key={idx}
-                  className={`px-2 py-1 rounded-md text-xs mr-2 inline-block ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}
+      {processedMedalSets.length === 0 ? (
+        <div className="text-center py-8">
+          <p>No medal sets found matching your criteria.</p>
+          {selectedTag && (
+            <button
+              onClick={() => {
+                setSelectedTag(null);
+                setFilteredMedalSets(medalSets);
+              }}
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+            >
+              Clear Filter
+            </button>
+          )}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {processedMedalSets.map((medalSet, index) => (
+            <div key={index} className={`p-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-900' : 'bg-gray-200'}`}>
+              <h2 className="text-xl font-bold mb-4">{medalSet?.name}</h2>
+              <div className="flex gap-2 flex-wrap justify-center sm:justify-start">
+                {medalSet?.displayMedals?.map((img, idx) => (
+                  <div key={idx} className="w-20 h-20 relative">
+                    <Image src={img} alt={`Medal ${idx + 1}`} className="rounded-md object-contain" fill />
+                  </div>
+                ))}
+              </div>
+              <div className="mt-2 text-sm">
+                {medalSet?.displayTraits?.map((trait, idx) => (
+                  <span
+                    key={idx}
+                    className={`px-2 py-1 rounded-md text-xs mr-2 inline-block ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}
+                  >
+                    {trait}
+                  </span>
+                ))}
+              </div>
+              <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} my-2`}></div>
+              <div className="w-full">
+                <button
+                  onClick={() => setSelectedMedalSet(medalSet)}
+                  className="w-full text-left text-blue-500 hover:underline py-1 flex items-center gap-1"
                 >
-                  {trait}
-                </span>
-              ))}
+                  <span>More Details</span> <FaArrowRight className="text-sm flex-shrink-0" />
+                </button>
+              </div>
             </div>
-            <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} my-2`}></div>
-            <div className="w-full">
-              <button
-                onClick={() => setSelectedMedalSet(medalSet)}
-                className="w-full text-left text-blue-500 hover:underline py-1 flex items-center gap-1"
-              >
-                <span>More Details</span> <FaArrowRight className="text-sm flex-shrink-0" />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {selectedMedalSet && (
         <div
