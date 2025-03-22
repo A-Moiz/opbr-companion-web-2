@@ -84,7 +84,6 @@ const SupportCards = () => {
   useEffect(() => {
     setFilteredSupports(
       supports.filter((support) => {
-        // For tags: ALL selected tags must be present
         const hasAllSelectedTags =
           selectedTags.length === 0 || selectedTags.every((tag) => support.support_tags?.includes(tag));
 
