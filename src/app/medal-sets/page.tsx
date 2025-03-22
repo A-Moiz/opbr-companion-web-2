@@ -88,6 +88,7 @@ const MedalSets = () => {
   return (
     <div className={`p-6 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
       <h2 className="text-2xl font-bold mb-4 text-center">Browse Medal Sets & Find the Best Fit for Your Characters</h2>
+      <p className="text-center mb-4">Note: More supports will be added in the future.</p>
 
       <div className="flex flex-wrap justify-center mb-4">
         {TagsClass.map((tag, index) => (

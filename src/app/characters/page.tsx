@@ -151,6 +151,7 @@ const Characters = () => {
       <div className="flex flex-wrap justify-center mb-4">
         {tagsClass.map((tag, index) => (
           <Tag key={index} label={tag} onClick={() => handleTagClick(tag)} isSelected={selectedTag === tag} />
+
         ))}
       </div>
 
