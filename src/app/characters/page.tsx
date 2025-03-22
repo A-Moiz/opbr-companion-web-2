@@ -39,11 +39,11 @@ const Characters = () => {
   useEffect(() => {
     const loadTags = async () => {
       try {
-        const module = await import('@/constants/tags');
-        if (module?.TagsClass && Array.isArray(module.TagsClass)) {
-          setTagsClass(module.TagsClass);
+        const tagsModule = await import('@/constants/tags');
+        if (tagsModule?.TagsClass && Array.isArray(tagsModule.TagsClass)) {
+          setTagsClass(tagsModule.TagsClass);
         }
-      } catch (error) {
+      } catch (err) {
         console.warn('Using default tags - failed to import TagsClass');
       }
     };
