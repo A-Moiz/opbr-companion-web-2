@@ -87,7 +87,6 @@ const SupportCards = () => {
         const hasAllSelectedTags =
           selectedTags.length === 0 || selectedTags.every((tag) => support.support_tags?.includes(tag));
 
-        // For color: The selected color must be included (if any is selected)
         const hasMatchingColor = !selectedColor || support.support_color?.includes(selectedColor);
 
         return hasAllSelectedTags && hasMatchingColor;
