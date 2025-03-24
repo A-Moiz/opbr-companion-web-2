@@ -32,7 +32,7 @@ const Footer = () => {
 
   return (
     <footer className="border-t border-gray-200 dark:border-gray-800">
-      <div className="container mx-auto px-6 py-8">
+      <div className="container mx-auto px-20 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
             <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
@@ -42,7 +42,7 @@ const Footer = () => {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <a
-              href="#"
+              href="https://apps.apple.com/gb/app/opbr-companion/id6737994116"
               className="flex items-center justify-center px-4 py-2 rounded-lg transition-all bg-blue-600 hover:bg-blue-700 text-white"
             >
               <FaApple className="mr-2 text-white" size={18} />
