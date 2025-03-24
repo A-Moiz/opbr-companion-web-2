@@ -65,12 +65,7 @@ const Home = () => {
         </div>
 
         <div className="container mx-auto px-4 z-10 text-center">
-          <div className="mb-8">
-            <Image src="/images/logo.png" alt="OPBR Companion Logo" width={150} height={150} className="mx-auto mb-8" />
-          </div>
-
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">OPBR Companion</h1>
-
           <h2 className="text-xl md:text-2xl font-medium mb-8 text-white drop-shadow-md">
             YOUR guide to reach the top leagues
           </h2>
