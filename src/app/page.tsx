@@ -54,7 +54,14 @@ const Home = () => {
         <div className="absolute inset-0 z-0">
           <div className={`absolute inset-0 ${darkMode ? 'bg-black opacity-70' : 'bg-white opacity-30'}`}></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 dark:from-transparent dark:to-gray-900"></div>
-          <Image src={Images?.banners[0]?.url} alt="OPBR Background" fill priority className="z-[-1] object-cover" />
+          <Image
+            src="/images/banner.jpg"
+            alt="OPBR Background"
+            layout="fill" // For Next.js 12 or earlier
+            fill // For Next.js 13+
+            priority
+            className="z-[-1] object-cover"
+          />{' '}
         </div>
 
         <div className="container mx-auto px-4 z-10 text-center">
