@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.2.3",
     "@tailwindcss/postcss": "^4.0.14",
     "@types/jest": "^29.5.14",
     "@types/node": "^20",
