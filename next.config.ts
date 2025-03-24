@@ -1,7 +1,8 @@
 import type { NextConfig } from 'next';
+import NextBundleAnalyzer from '@next/bundle-analyzer';
 
 // Note: only allow specific hostnames
-const nextConfig: NextConfig = {
+const defaultConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -28,4 +29,13 @@ const nextConfig: NextConfig = {
   }
 };
 
-export default nextConfig;
+let config: NextConfig = defaultConfig;
+if (process.env.ANALYZE === 'true') {
+  const withBundleAnalyzer = NextBundleAnalyzer({
+    enabled: true,
+    openAnalyzer: true
+  });
+  config = withBundleAnalyzer(defaultConfig);
+}
+
+export default config;
