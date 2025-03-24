@@ -244,16 +244,18 @@ const Characters = () => {
                 </div>
               </div>
 
+              <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4 mt-4`}></div>
               <div>
-                <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4`}></div>
                 <h3 className="font-semibold text-lg mb-2">Color:</h3>
                 <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedCharacter.color || 'N/A'}</p>
               </div>
-              <div>
+
+              <div className={`mt-4`}>
                 <h3 className="font-semibold text-lg mb-2">Class:</h3>
                 <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedCharacter.class || 'N/A'}</p>
               </div>
-              <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4`}></div>
+
+              <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4 mt-4`}></div>
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-4">
                 <table className="w-full text-sm text-left">
                   <tbody>
@@ -291,7 +293,7 @@ const Characters = () => {
                   Array.isArray(selectedCharacter?.recommended_set) &&
                   selectedCharacter?.recommended_set?.length > 0 && (
                     <>
-                      <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4`}></div>
+                      <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4 mt-4`}></div>
                       <div>
                         <h3 className="font-semibold text-lg mb-2">Recommended Medal Set:</h3>
                         <div className="flex gap-2 mb-3">
@@ -315,11 +317,13 @@ const Characters = () => {
                     </>
                   )}
 
-                <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4`}></div>
+                <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4 mt-4`}></div>
 
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Recommended Stats:</h3>
-                  <h2 className="mb-2">{selectedCharacter.recommended_stats}</h2>
+                  <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>
+                    {selectedCharacter.recommended_stats}
+                  </p>
                   <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                     {selectedCharacter?.stat_message || 'No information available'}
                   </p>
@@ -327,7 +331,7 @@ const Characters = () => {
 
                 {selectedCharacter?.guide && (
                   <>
-                    <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4`}></div>
+                    <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4 mt-4`}></div>
                     <div>
                       <h3 className="font-semibold text-lg mb-2">Guide:</h3>
                       <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{selectedCharacter?.guide}</p>

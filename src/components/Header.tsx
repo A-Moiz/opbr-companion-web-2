@@ -21,7 +21,7 @@ const Header = () => {
           <Image src={Logo} alt="OPBR App Logo" width={50} height={50} priority />
         </Link>
 
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden md:flex space-x-25">
           <NavLink href="/" title="Home" darkMode={darkMode} />
           <NavLink href="/characters" title="Characters" darkMode={darkMode} />
           <NavLink href="/medal-sets" title="Medal Sets" darkMode={darkMode} />

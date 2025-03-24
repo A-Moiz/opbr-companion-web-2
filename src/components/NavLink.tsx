@@ -10,7 +10,7 @@ const NavLink = ({ href, title, darkMode }: NavLinkProps) => {
   return (
     <Link
       href={href}
-      className={`block transition-transform duration-300 ${
+      className={`block text-xl font-medium transition-transform duration-300 ${
         darkMode ? 'text-gray-200' : 'text-gray-800'
       } hover:text-[#FF7F50] hover:scale-105`}
     >
