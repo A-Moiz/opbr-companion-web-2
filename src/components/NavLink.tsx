@@ -4,15 +4,17 @@ interface NavLinkProps {
   href: string;
   title: string;
   darkMode: boolean;
+  textColor?: string;
+  className?: string;
 }
 
-const NavLink = ({ href, title, darkMode }: NavLinkProps) => {
+const NavLink: React.FC<NavLinkProps> = ({ href, title, darkMode, textColor, className = '' }) => {
   return (
     <Link
       href={href}
-      className={`block text-xl font-medium transition-transform duration-300 ${
-        darkMode ? 'text-gray-200' : 'text-gray-800'
-      } hover:text-[#FF7F50] hover:scale-105`}
+      className={`px-3 py-2 rounded-md transition-colors duration-200 ${
+        textColor ? textColor : darkMode ? 'text-white hover:bg-gray-700' : 'text-black hover:bg-gray-200'
+      } ${className}`}
     >
       {title}
     </Link>
