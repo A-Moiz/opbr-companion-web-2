@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import useTheme from '@/contexts/ThemeContext';
 import { FiArrowUp } from 'react-icons/fi';
-import { FaApple, FaGooglePlay } from 'react-icons/fa';
+import { FaApple } from 'react-icons/fa';
 
 const Footer = () => {
   const theme = useTheme();
@@ -43,19 +43,21 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href="https://apps.apple.com/gb/app/opbr-companion/id6737994116"
+              target="_blank"
               className="flex items-center justify-center px-4 py-2 rounded-lg transition-all bg-blue-600 hover:bg-blue-700 text-white"
             >
               <FaApple className="mr-2 text-white" size={18} />
               <span className="font-medium">App Store</span>
             </a>
 
-            <a
-              href="#"
+            {/* <a
+              href=""
+              target="_blank"
               className="flex items-center justify-center px-4 py-2 rounded-lg transition-all bg-green-600 hover:bg-green-700 text-white"
             >
               <FaGooglePlay className="mr-2 text-white" size={16} />
               <span className="font-medium">Google Play</span>
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

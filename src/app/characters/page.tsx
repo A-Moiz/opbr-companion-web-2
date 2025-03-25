@@ -156,18 +156,7 @@ const Characters = () => {
 
       {filteredCharacters.length === 0 ? (
         <div className="text-center py-8">
-          <p>No characters found matching your criteria.</p>
-          {selectedTag && (
-            <button
-              onClick={() => {
-                setSelectedTag(null);
-                setFilteredCharacters(characters);
-              }}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-            >
-              Clear Filter
-            </button>
-          )}
+          <p>No characters found.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -225,20 +225,20 @@ const SupportCards = () => {
               </div>
             )}
           </div>
+          <button
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+            onClick={() => {
+              setSelectedTags([]);
+              setSelectedColor(null);
+            }}
+          >
+            Clear Filters
+          </button>
         </div>
 
         {filteredSupports.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-lg">No support cards match your current filters</p>
-            <button
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-              onClick={() => {
-                setSelectedTags([]);
-                setSelectedColor(null);
-              }}
-            >
-              Clear Filters
-            </button>
+            <p className="text-lg">No supports match your current filters.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
