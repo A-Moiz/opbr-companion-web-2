@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OBPR Companion App
 
-## Getting Started
+A modern, responsive companion web app for One Piece Bounty Rush (OBPR), designed to help players easily explore character stats, view detailed info, and enhance their gameplay. Built with performance, style, and user experience in mind.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- 🔍 **Character Database** – Search, filter, and view character profiles.
+- 🌗 **Light/Dark Mode** – Toggle between clean light and sleek dark themes.
+- 📱 **Fully Responsive** – Optimised for both desktop and mobile use.
+- 🎮 **One Piece Inspired UI** – Styled to match the anime’s personality and flair.
+- 🎞 **Smooth Animations** – Framer Motion enhances transitions and interactions.
+- ⚡ **Fast Performance** – Server-side rendering and code splitting with Next.js.
+
+---
+
+## 🛠 Tech Stack
+
+| Area                | Tech Used                              |
+|---------------------|----------------------------------------|
+| Frontend Framework  | [Next.js](https://nextjs.org/)         |
+| Styling             | [Tailwind CSS](https://tailwindcss.com/), [DaisyUI](https://daisyui.com/) |
+| Animations          | [Framer Motion](https://www.framer.com/motion/) |
+| Icons               | [React Icons](https://react-icons.github.io/react-icons/) |
+| Hosting             | [Netlify](https://www.netlify.com/)    |
+| State Management    | React Hooks & Context API              |
+| Version Control     | Git & GitHub                           |
+
+---
+
+## 🎨 Themes
+
+The app supports both **Light** and **Dark** themes with a One Piece vibe:
+
+### Light Theme
+- Background: `#F5F5F5`
+- Text: `#212121`
+- Primary Button: `#3F8CFF`
+- Highlight: `#FFD700` (Gold)
+
+### Dark Theme
+- Background: `#181A1B`
+- Text: `#E0E0E0`
+- Primary Button: `#3F8CFF`
+- Highlight: `#FFD700`
+
+Accessible, bold, and fun – just like the Straw Hats.
+
+---
+
+## 🧩 Folder Structure (Simplified)
+### /app /characters - Character pages (dynamic) /components - Reusable components (cards, UI elements, etc.) /hooks - Custom React hooks /styles - Tailwind config and global styles /lib - Utility functions and helpers /public - Static assets (images, icons) /config - Theme and meta config
+
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
 
 ```bash
-npm run dev
+# Clone the repository
+git clone https://github.com/your-username/obpr-companion.git
+```
+# Navigate into the project
+```
+cd obpr-companion
+```
+# Install dependencies
+```
+npm install
+```
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run the development server
+```bash
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+npm run dev
+```
+# or
+```
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# 🛡 License
+### This project uses the MIT License.
 
-## Learn More
+### Use at your own risk. No warranties or guarantees are provided regarding data loss, misuse, or app behaviour. 
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
