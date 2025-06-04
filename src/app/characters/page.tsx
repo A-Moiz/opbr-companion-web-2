@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
-import { FaArrowRight, FaTimes } from 'react-icons/fa';
+import { FaArrowRight, FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import useTheme from '@/contexts/ThemeContext';
 import Tag from '@/components/Tag';
 import { TagsClass } from '@/constants/tags';
@@ -23,6 +23,7 @@ interface Character {
   set_message?: string;
   stat_message?: string;
   guide?: string | null;
+  alt_sets?: string[][];
 }
 
 const Characters = () => {
@@ -30,11 +31,41 @@ const Characters = () => {
   const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([]);
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [selectedSetIndex, setSelectedSetIndex] = useState<number>(0);
   const [tagsClass, setTagsClass] = useState<string[]>([...TagsClass]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const theme = useTheme();
   const darkMode = theme?.darkMode ?? false;
+
+  const getCurrentSet = () => {
+    if (!selectedCharacter) return null;
+
+    const hasMainSet = selectedCharacter.recommended_set?.length > 0;
+
+    if (selectedSetIndex === 0 && hasMainSet) {
+      return {
+        type: 'main',
+        name: 'Primary Build',
+        medals: selectedCharacter.recommended_set!,
+        description: selectedCharacter.set_message || 'Primary recommended medal set'
+      };
+    }
+
+    const altIndex = hasMainSet ? selectedSetIndex - 1 : selectedSetIndex;
+    const altSet = selectedCharacter.alt_sets?.[altIndex];
+
+    if (altSet) {
+      return {
+        type: 'alt',
+        name: `Alternative Build ${altIndex + 1}`,
+        medals: altSet,
+        description: `Alternative medal combination ${altIndex + 1}`
+      };
+    }
+
+    return null;
+  };
 
   useEffect(() => {
     const loadTags = async () => {
@@ -100,6 +131,28 @@ const Characters = () => {
     [characters]
   );
 
+  const handleCharacterSelect = (character: Character) => {
+    setSelectedCharacter(character);
+    setSelectedSetIndex(0); // Reset to first set when opening character
+  };
+
+  const handleSetNavigation = (direction: 'prev' | 'next') => {
+    const totalSets = getTotalSets();
+    if (direction === 'prev') {
+      setSelectedSetIndex((prev) => (prev > 0 ? prev - 1 : totalSets - 1));
+    } else {
+      setSelectedSetIndex((prev) => (prev < totalSets - 1 ? prev + 1 : 0));
+    }
+  };
+
+  const getTotalSets = () => {
+    if (!selectedCharacter) return 0;
+    let count = 0;
+    if (selectedCharacter.recommended_set?.length) count++;
+    if (selectedCharacter.alt_sets?.length) count += selectedCharacter.alt_sets.length;
+    return count;
+  };
+
   useEffect(() => {
     if (selectedCharacter) {
       document.body.style.overflow = 'hidden';
@@ -144,6 +197,9 @@ const Characters = () => {
     );
   }
 
+  const currentSet = getCurrentSet();
+  const totalSets = getTotalSets();
+
   return (
     <div className={`p-6 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
       <h2 className="text-2xl font-bold mb-4 text-center">Find the Best Guide for Your Favourite Characters</h2>
@@ -164,7 +220,7 @@ const Characters = () => {
             <div
               key={character.id || index}
               className={`p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow ${darkMode ? 'bg-gray-900' : 'bg-gray-200'}`}
-              onClick={() => setSelectedCharacter(character)}
+              onClick={() => handleCharacterSelect(character)}
             >
               <h2 className="text-xl font-bold mb-4 text-center">{character.name}</h2>
 
@@ -185,7 +241,7 @@ const Characters = () => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    setSelectedCharacter(character);
+                    handleCharacterSelect(character);
                   }}
                   className="w-full text-left text-blue-500 hover:underline py-1 flex items-center gap-1"
                   aria-label={`View details for ${character.name}`}
@@ -278,33 +334,91 @@ const Characters = () => {
                     selectedCharacter.medal_tags.map((tag, idx) => <p key={idx}>{tag}</p>)}
                 </div>
 
-                {selectedCharacter?.recommended_set &&
-                  Array.isArray(selectedCharacter?.recommended_set) &&
-                  selectedCharacter?.recommended_set?.length > 0 && (
-                    <>
-                      <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4 mt-4`}></div>
-                      <div>
-                        <h3 className="font-semibold text-lg mb-2">Recommended Medal Set:</h3>
-                        <div className="flex gap-2 mb-3">
-                          {selectedCharacter.recommended_set.map((medal, idx) => (
-                            <div key={idx} className="relative w-16 h-16 overflow-hidden">
-                              <Image
-                                src={medal}
-                                alt={`Medal ${idx + 1}`}
-                                className="object-contain"
-                                width={64}
-                                height={64}
-                                unoptimized
-                              />
-                            </div>
+                {/* Enhanced Medal Sets Section with Alternative Sets */}
+                {totalSets > 0 && (
+                  <>
+                    <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4 mt-4`}></div>
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="font-semibold text-lg">
+                          Medal Sets {totalSets > 1 && `(${selectedSetIndex + 1}/${totalSets})`}
+                        </h3>
+                        {totalSets > 1 && (
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => handleSetNavigation('prev')}
+                              className={`p-2 rounded-full ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'} transition-colors`}
+                              aria-label="Previous set"
+                            >
+                              <FaChevronLeft size={14} />
+                            </button>
+                            <button
+                              onClick={() => handleSetNavigation('next')}
+                              className={`p-2 rounded-full ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'} transition-colors`}
+                              aria-label="Next set"
+                            >
+                              <FaChevronRight size={14} />
+                            </button>
+                          </div>
+                        )}
+                      </div>
+
+                      {currentSet && (
+                        <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-lg p-4`}>
+                          <div className="flex items-center justify-between mb-3">
+                            <h4 className="font-medium text-lg">{currentSet.name}</h4>
+                            {currentSet.type === 'main' && (
+                              <span
+                                className={`px-2 py-1 rounded-full text-xs font-medium ${darkMode ? 'bg-green-900 text-green-200' : 'bg-green-100 text-green-800'}`}
+                              >
+                                Primary
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="flex gap-2 mb-3">
+                            {currentSet.medals.map((medal, idx) => (
+                              <div key={idx} className="relative w-16 h-16 overflow-hidden">
+                                <Image
+                                  src={medal}
+                                  alt={`Medal ${idx + 1}`}
+                                  className="object-contain"
+                                  width={64}
+                                  height={64}
+                                  unoptimized
+                                />
+                              </div>
+                            ))}
+                          </div>
+
+                          <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                            {currentSet.description}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Set Navigation Dots */}
+                      {totalSets > 1 && (
+                        <div className="flex justify-center gap-2 mt-3">
+                          {Array.from({ length: totalSets }, (_, i) => (
+                            <button
+                              key={i}
+                              onClick={() => setSelectedSetIndex(i)}
+                              className={`w-2 h-2 rounded-full transition-colors ${
+                                i === selectedSetIndex
+                                  ? 'bg-blue-500'
+                                  : darkMode
+                                    ? 'bg-gray-600 hover:bg-gray-500'
+                                    : 'bg-gray-300 hover:bg-gray-400'
+                              }`}
+                              aria-label={`Go to set ${i + 1}`}
+                            />
                           ))}
                         </div>
-                        <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                          {selectedCharacter?.set_message || 'No information available'}
-                        </p>
-                      </div>
-                    </>
-                  )}
+                      )}
+                    </div>
+                  </>
+                )}
 
                 <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-300'} pt-4 mt-4`}></div>
 
