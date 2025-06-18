@@ -119,7 +119,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className={`rounded-lg shadow-lg overflow-hidden ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
-              <div className="relative h-48">
+              <div className="relative h-150">
                 <Image src={Images.banners[1].url} alt="New Character Release" fill className="object-cover" />
               </div>
               <div className="p-6">
