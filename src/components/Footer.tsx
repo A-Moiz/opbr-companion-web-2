@@ -51,7 +51,7 @@ const Footer = () => {
             </a>
 
             <a
-              href="https://play.google.com/store/apps/details?id=app.opbr_companion&utm_source=emea_Med"
+              href="https://play.google.com/store/apps/details?id=app.opbrcompanion"
               target="_blank"
               className="flex items-center justify-center px-4 py-2 rounded-lg transition-all bg-green-600 hover:bg-green-700 text-white"
             >
