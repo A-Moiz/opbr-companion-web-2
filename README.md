@@ -1,22 +1,29 @@
 # OBPR Companion App
-
 A modern, responsive companion web app for One Piece Bounty Rush (OBPR), designed to help players easily explore character stats, view detailed info, and enhance their gameplay. Built with performance, style, and user experience in mind.
 
 ---
 
-## 🚀 Features
+## 📱 Mobile Versions
+Take the OBPR experience with you! The companion app is also available on mobile platforms:
 
+| Platform | Repository | Description |
+|----------|------------|-------------|
+| **iOS (Swift)** | [opbr-companion-web-2](https://github.com/A-Moiz/opbr-companion-web-2) | Native iOS app with the same features |
+| **Android (Kotlin)** | [opbr-companion](https://github.com/Wallysonadsilva/opbr-companion) | Native Android app with the same features |
+
+---
+
+## 🚀 Features
 - 🔍 **Character Database** – Search, filter, and view character profiles.
 - 🌗 **Light/Dark Mode** – Toggle between clean light and sleek dark themes.
 - 📱 **Fully Responsive** – Optimised for both desktop and mobile use.
-- 🎮 **One Piece Inspired UI** – Styled to match the anime’s personality and flair.
+- 🎮 **One Piece Inspired UI** – Styled to match the anime's personality and flair.
 - 🎞 **Smooth Animations** – Framer Motion enhances transitions and interactions.
 - ⚡ **Fast Performance** – Server-side rendering and code splitting with Next.js.
 
 ---
 
 ## 🛠 Tech Stack
-
 | Area                | Tech Used                              |
 |---------------------|----------------------------------------|
 | Frontend Framework  | [Next.js](https://nextjs.org/)         |
@@ -30,7 +37,6 @@ A modern, responsive companion web app for One Piece Bounty Rush (OBPR), designe
 ---
 
 ## 🎨 Themes
-
 The app supports both **Light** and **Dark** themes with a One Piece vibe:
 
 ### Light Theme
@@ -50,52 +56,47 @@ Accessible, bold, and fun – just like the Straw Hats.
 ---
 
 ## 🧩 Folder Structure (Simplified)
-### /app /characters - Character pages (dynamic) /components - Reusable components (cards, UI elements, etc.) /hooks - Custom React hooks /styles - Tailwind config and global styles /lib - Utility functions and helpers /public - Static assets (images, icons) /config - Theme and meta config
-
+### /app 
+/characters - Character pages (dynamic) 
+/components - Reusable components (cards, UI elements, etc.) 
+/hooks - Custom React hooks 
+/styles - Tailwind config and global styles 
+/lib - Utility functions and helpers 
+/public - Static assets (images, icons) 
+/config - Theme and meta config
 
 ---
 
 ## ⚙️ Getting Started
 
 ### Prerequisites
-
 - Node.js 18+
 - npm or yarn
 
 ### Installation
-
 ```bash
 # Clone the repository
 git clone https://github.com/your-username/obpr-companion.git
-```
+
 # Navigate into the project
-```
 cd obpr-companion
-```
+
 # Install dependencies
-```
 npm install
-```
 # or
-```
 yarn install
 ```
 
-## Run the development server
+### Run the development server
 ```bash
-
 npm run dev
-```
 # or
-```
 yarn dev
 ```
 
-# 🛡 License
-### This project uses the MIT License.
+---
 
-### Use at your own risk. No warranties or guarantees are provided regarding data loss, misuse, or app behaviour. 
+## 🛡 License
+This project uses the MIT License.
 
-
-
-
+Use at your own risk. No warranties or guarantees are provided regarding data loss, misuse, or app behaviour.
