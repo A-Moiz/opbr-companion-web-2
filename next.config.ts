@@ -1,3 +1,4 @@
+console.log("🚀 NEXT_PUBLIC_SUPABASE_DOMAIN:", process.env.NEXT_PUBLIC_SUPABASE_DOMAIN);
 import type { NextConfig } from 'next';
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 
