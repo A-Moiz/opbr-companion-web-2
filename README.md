@@ -2,6 +2,11 @@
 A modern, responsive companion web app for One Piece Bounty Rush (OBPR), designed to help players easily explore character stats, view detailed info, and enhance their gameplay. Built with performance, style, and user experience in mind.
 
 ---
+## 🎮 Website version Demo
+
+### 🌐 [**Live Demo →**](https://opbr-companion.netlify.app/)
+
+Experience the full app in action! Browse characters, explore medal sets, and toggle themes.
 
 ## 📱 Mobile Versions
 Take the OBPR experience with you! The companion app is also available on mobile platforms:
