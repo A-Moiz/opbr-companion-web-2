@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import useTheme from '@/contexts/ThemeContext';
 import Tag from '@/components/Tag';
@@ -24,8 +24,8 @@ const SupportCards = () => {
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [isTagsExpanded, setIsTagsExpanded] = useState<boolean>(false);
   const [isColorsExpanded, setIsColorsExpanded] = useState<boolean>(false);
-  const tagsRef = React.useRef<HTMLDivElement>(null);
-  const colorsRef = React.useRef<HTMLDivElement>(null);
+  const tagsRef = useRef<HTMLDivElement>(null);
+  const colorsRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const darkMode = theme?.darkMode ?? false;
 
@@ -102,8 +102,8 @@ const SupportCards = () => {
     setSelectedColor((prev) => (prev === color ? null : color));
   }, []);
 
-  const tagsContentRef = React.useRef<HTMLDivElement>(null);
-  const colorsContentRef = React.useRef<HTMLDivElement>(null);
+  const tagsContentRef = useRef<HTMLDivElement>(null);
+  const colorsContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
