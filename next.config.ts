@@ -1,4 +1,4 @@
-console.log("🚀 NEXT_PUBLIC_SUPABASE_DOMAIN:", process.env.NEXT_PUBLIC_SUPABASE_DOMAIN);
+console.log('🚀 NEXT_PUBLIC_SUPABASE_DOMAIN:', process.env.NEXT_PUBLIC_SUPABASE_DOMAIN);
 import type { NextConfig } from 'next';
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 
@@ -25,6 +25,12 @@ const defaultConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'play-lh.googleusercontent.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'bwpgdqzcvqroakybcgjd.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**'
       }
     ]
   }
