@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaUsers, FaMedal, FaHandHoldingHeart } from 'react-icons/fa';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Images from '@/data/images.json';
 import useTheme from '@/contexts/ThemeContext';
 
