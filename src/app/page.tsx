@@ -3,27 +3,36 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaUsers, FaMedal, FaHandHoldingHeart } from 'react-icons/fa';
-
+import { useEffect, useState } from 'react';
 import Images from '@/data/images.json';
-
 import useTheme from '@/contexts/ThemeContext';
 
-const Home = () => {
-  // useEffect(() => {
-  //   const fetchExampleData = async () => {
-  //     try {
-  //       const response = await fetch('/api/home');
-  //       const data = await response.json();
-  //       console.log('Example data:', data);
-  //     } catch (error) {
-  //       console.error('Error fetching example data:', error);
-  //     }
-  //   };
-  //   fetchExampleData();
-  // }, []);
+interface AppSettings {
+  id: number;
+  show_artworks: boolean;
+  latest_extreme: string;
+}
 
+const Home = () => {
   const theme = useTheme();
   const darkMode = theme?.darkMode ?? false;
+  const [settings, setSettings] = useState<AppSettings | null>(null);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const response = await fetch('/api/app-settings');
+        const result = await response.json();
+
+        if (result.success && Array.isArray(result.data)) {
+          setSettings(result.data[0]);
+        }
+      } catch (error) {
+        console.error('Failed to fetch settings:', error);
+      }
+    };
+    fetchSettings();
+  }, []);
 
   const featuredCards = [
     {
@@ -57,8 +66,8 @@ const Home = () => {
           <Image
             src="/images/banner.jpg"
             alt="OPBR Background"
-            layout="fill" // For Next.js 12 or earlier
-            fill // For Next.js 13+
+            layout="fill"
+            fill
             priority
             className="z-[-1] object-cover"
           />{' '}
@@ -120,7 +129,13 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className={`rounded-lg shadow-lg overflow-hidden ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
               <div className="relative h-150">
-                <Image src={Images.banners[1].url} alt="New Character Release" fill className="object-cover" />
+                <Image
+                  key={settings?.latest_extreme}
+                  src={settings?.latest_extreme || '/images/banner.jpg'}
+                  alt="Latest Extreme Character"
+                  fill
+                  className="object-cover z-0"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">New Character Release!</h3>
