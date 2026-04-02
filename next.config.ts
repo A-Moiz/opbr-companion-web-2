@@ -31,6 +31,10 @@ const defaultConfig: NextConfig = {
         hostname: 'bwpgdqzcvqroakybcgjd.supabase.co',
         port: '',
         pathname: '/storage/v1/object/public/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com'
       }
     ]
   }
