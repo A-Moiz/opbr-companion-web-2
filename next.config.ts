@@ -1,30 +1,39 @@
-console.log('🚀 NEXT_PUBLIC_SUPABASE_DOMAIN:', process.env.NEXT_PUBLIC_SUPABASE_DOMAIN);
 import type { NextConfig } from 'next';
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 
-// Note: only allow specific hostnames
+console.log('🚀 NEXT_PUBLIC_SUPABASE_URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+
+const supabaseDomain = process.env.NEXT_PUBLIC_SUPABASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname
+  : null;
+
 const defaultConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'pbs.twimg.com'
+        hostname: '*.twimg.com',
+        pathname: '/**'
       },
       {
         protocol: 'https',
-        hostname: 'drive.google.com'
+        hostname: '*.google.com',
+        pathname: '/**'
+      },
+      ...(supabaseDomain ? [{
+        protocol: 'https' as const,
+        hostname: supabaseDomain,
+        pathname: '/**'
+      }] : []),
+      {
+        protocol: 'https',
+        hostname: 'scontent.flba1-1.fna.fbcdn.net',
+        pathname: '/**'
       },
       {
         protocol: 'https',
-        hostname: process.env.NEXT_PUBLIC_SUPABASE_DOMAIN!
-      },
-      {
-        protocol: 'https',
-        hostname: 'scontent.flba1-1.fna.fbcdn.net'
-      },
-      {
-        protocol: 'https',
-        hostname: 'play-lh.googleusercontent.com'
+        hostname: '*.googleusercontent.com',
+        pathname: '/**'
       },
       {
         protocol: 'https',
@@ -34,7 +43,8 @@ const defaultConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'res.cloudinary.com'
+        hostname: '*.cloudinary.com',
+        pathname: '/**'
       }
     ]
   }
