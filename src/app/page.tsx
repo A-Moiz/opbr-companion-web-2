@@ -43,13 +43,13 @@ const Home = () => {
     },
     {
       title: 'Medal Sets',
-      description: 'Optimize your battle strategy with perfect medal combinations',
+      description: 'Optimise your battle strategy with perfect medal combinations',
       icon: <FaMedal size={32} className={darkMode ? 'text-coral' : 'text-gray-800'} />,
       link: '/medal-sets'
     },
     {
       title: 'Support',
-      description: 'Enhance your team with the best support characters',
+      description: 'Enhance your team with various support examples',
       icon: <FaHandHoldingHeart size={32} className={darkMode ? 'text-coral' : 'text-gray-800'} />,
       link: '/supports'
     }
