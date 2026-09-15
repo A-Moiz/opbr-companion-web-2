@@ -133,7 +133,7 @@ const Characters = () => {
 
   const handleCharacterSelect = (character: Character) => {
     setSelectedCharacter(character);
-    setSelectedSetIndex(0); // Reset to first set when opening character
+    setSelectedSetIndex(0);
   };
 
   const handleSetNavigation = (direction: 'prev' | 'next') => {

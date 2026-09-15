@@ -20,11 +20,15 @@ const defaultConfig: NextConfig = {
         hostname: '*.google.com',
         pathname: '/**'
       },
-      ...(supabaseDomain ? [{
-        protocol: 'https' as const,
-        hostname: supabaseDomain,
-        pathname: '/**'
-      }] : []),
+      ...(supabaseDomain
+        ? [
+            {
+              protocol: 'https' as const,
+              hostname: supabaseDomain,
+              pathname: '/**'
+            }
+          ]
+        : []),
       {
         protocol: 'https',
         hostname: 'scontent.flba1-1.fna.fbcdn.net',
@@ -44,6 +48,11 @@ const defaultConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: '*.cloudinary.com',
+        pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
         pathname: '/**'
       }
     ]
